@@ -24,6 +24,11 @@ CHAMPS_PLAN = [
     "lumiere", "focale", "personnage", "personnage_id", "voix_off",
 ]
 
+# Version anglaise des champs descriptifs : facultative mais recommandee,
+# Midjourney comprend mieux l'anglais. Si un plan en a un, il doit avoir
+# les quatre.
+CHAMPS_EN = ["sujet_en", "action_en", "lieu_en", "lumiere_en"]
+
 
 def charger_json(chemin):
     if not chemin.exists():
@@ -45,6 +50,12 @@ def valider_plans(plans):
             erreurs.append(f"plan {plan.get('id', i)} : champs manquants {manquants}")
         if plan.get("personnage") and not plan.get("personnage_id"):
             erreurs.append(f"plan {plan.get('id', i)} : personnage=true mais personnage_id vide")
+        presents_en = [c for c in CHAMPS_EN if plan.get(c)]
+        if presents_en and len(presents_en) != len(CHAMPS_EN):
+            erreurs.append(
+                f"plan {plan.get('id', i)} : version anglaise incomplete, "
+                f"il faut les quatre champs {CHAMPS_EN}"
+            )
     for i in range(len(plans) - 2):
         v = plans[i]["valeur_plan"]
         if v == plans[i + 1]["valeur_plan"] == plans[i + 2]["valeur_plan"]:
@@ -75,19 +86,36 @@ def parametres_modele(plan, bible):
     return "--v 8.1 --hd"
 
 
-def construire_prompt(plan, bible):
+def a_version_anglaise(plan):
+    return all(plan.get(c) for c in CHAMPS_EN)
+
+
+def construire_prompt(plan, bible, langue=None):
     """Ordre impose : sujet -> action -> environnement -> lumiere -> parametres.
 
-    Aucun texte incruste dans l'image : les titres sont ajoutes en post.
+    langue : "en", "fr", ou None (anglais si disponible, sinon francais —
+    c'est le prompt executable). Aucun texte incruste dans l'image : les
+    titres sont ajoutes en post.
     """
+    if langue is None:
+        langue = "en" if a_version_anglaise(plan) else "fr"
     stylize = min(int(bible["stylize"]), STYLIZE_MAX)
-    description = ", ".join([
-        plan["sujet"],
-        plan["action"],
-        plan["lieu"],
-        plan["lumiere"],
-        f"objectif {plan['focale']}",
-    ])
+    if langue == "en":
+        description = ", ".join([
+            plan["sujet_en"],
+            plan["action_en"],
+            plan["lieu_en"],
+            plan["lumiere_en"],
+            f"{plan['focale']} lens",
+        ])
+    else:
+        description = ", ".join([
+            plan["sujet"],
+            plan["action"],
+            plan["lieu"],
+            plan["lumiere"],
+            f"objectif {plan['focale']}",
+        ])
     parametres = " ".join([
         f"--ar {bible['ratio']}",
         f"--sref {bible['sref']}",
@@ -136,6 +164,13 @@ def main():
         lignes.append(construire_prompt(plan, bible))
         lignes.append("```")
         lignes.append("")
+        if a_version_anglaise(plan):
+            lignes.append("Référence française :")
+            lignes.append("")
+            lignes.append("```")
+            lignes.append(construire_prompt(plan, bible, langue="fr"))
+            lignes.append("```")
+            lignes.append("")
         if plan["voix_off"]:
             lignes.append(f"Voix off : {plan['voix_off']}")
             lignes.append("")

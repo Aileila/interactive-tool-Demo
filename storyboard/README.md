@@ -58,6 +58,12 @@ dérivé et régénéré à l'identique par les scripts.
 - `--s` est plafonné à 250 par le moteur, quelle que soit la bible.
 - Ordre de prompt imposé : sujet → action → environnement → lumière →
   paramètres.
+- Langue des prompts : chaque plan porte ses champs descriptifs en
+  français et en anglais (`sujet_en`, `action_en`, `lieu_en`,
+  `lumiere_en`). Le prompt exécutable est l'anglais (Midjourney le
+  comprend mieux) ; le français reste en référence dans `prompts.md`.
+  Les quatre champs anglais vont ensemble : en fournir un seul est une
+  erreur bloquante. Sans eux, le moteur retombe sur le français.
 - Aucun texte incrusté dans l'image : les titres sont ajoutés en post.
 - Contrainte de rythme vérifiée par le moteur : jamais trois valeurs de
   plan identiques consécutives (erreur bloquante sinon).
