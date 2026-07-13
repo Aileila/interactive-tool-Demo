@@ -1,0 +1,22 @@
+{
+  "sref": "A_CREER",
+  "ratio": "16:9",
+  "stylize": 200,
+  "palette": [
+    "bleu nuit profond",
+    "ambre chaud de lanterne",
+    "gris ardoise",
+    "blanc ecume",
+    "jaune cire use"
+  ],
+  "lumiere": "source chaude unique dans une nuit froide, contre-jours marques, pluie retroeclairee",
+  "focales": ["24mm", "35mm", "50mm", "85mm"],
+  "personnages": [
+    {
+      "id": "nora",
+      "fiche": "femme de 60 ans, cheveux gris courts, visage burine, regard clair, cire jaune use sur pull de laine sombre, bottes de mer",
+      "oref_url": "A_CREER",
+      "ow": 450
+    }
+  ]
+}
