@@ -94,6 +94,7 @@ def lignes_a_pousser():
             "modele": "V7 + oref" if plan["personnage"] else "V8.1 + hd",
             "personnage": plan["personnage_id"] or "",
             "prompt": construire_prompt(plan, bible),
+            "prompt_fr": construire_prompt(plan, bible, langue="fr"),
             "voix_off": plan["voix_off"],
             "png_present": (DOSSIER_ASSETS / f"{plan['id']}.png").exists(),
         })
@@ -158,6 +159,7 @@ def pousser_plan(token, config, id_projet, ligne, existants):
         "Modele": {"select": {"name": ligne["modele"]}},
         "Personnage": texte(ligne["personnage"]),
         "Prompt": texte(ligne["prompt"]),
+        "Prompt FR": texte(ligne["prompt_fr"]),
         "Voix off": texte(ligne["voix_off"]),
         "Projet": {"relation": [{"id": id_projet}]},
     }
