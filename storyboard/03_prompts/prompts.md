@@ -8,95 +8,115 @@ Ratio 16:9 — sref A_CREER — stylize 200
 ## P01 — plan d'ensemble — 5 s
 
 ```
-phare solitaire sur une ile rocheuse de l'Atlantique nord, la lanterne encore eteinte domine les recifs, ile battue par les vagues, crepuscule, dernier bleu du jour, ciel charge, objectif 24mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
+tour de bureaux vitree la nuit, un seul etage encore allume domine la ville endormie, quartier d'affaires, nuit, bleu froid des open spaces, neons de ville en contrebas, objectif 24mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
 ```
 
-Voix off : Quarante ans que Nora allume ce feu. Chaque soir, sans y penser.
+Voix off : Douze ans que Claire faisait tourner cette machine. Un lundi matin, la machine a decide de tourner sans elle.
 
 Image attendue : 04_assets/P01.png
 
 ## P02 — plan moyen — 4 s
 
 ```
-Nora, gardienne de phare de 60 ans en cire jaune use, gravit l'escalier en colimacon, lampe-tempete a la main, interieur du phare, escalier de pierre, lueur chaude de la lampe, ombres portees sur le mur courbe, objectif 35mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+Claire, 54 ans, blazer sombre, range son bureau dans un carton sous les regards genes de l'open space, open space de grand groupe tech, matin, eclairage neutre de bureau, froid et plat, objectif 35mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
 
-Voix off : Cent quarante marches. Elle les connait une par une.
+Voix off : Le mot n'est jamais dit. Mais tout le monde l'entend : trop senior.
 
 Image attendue : 04_assets/P02.png
 
 ## P03 — gros plan — 3 s
 
 ```
-mains burinees de Nora, tournent la manivelle du mecanisme et allument la lanterne, chambre de la lanterne, optique de Fresnel, flamme ambre naissante refletee dans le verre, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+mains de Claire, posent son badge d'acces sur le carton de demenagement, bureau vide, surface de table nue, lumiere rasante de fenetre, ombre longue du badge, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
 
 Image attendue : 04_assets/P03.png
 
-## P04 — plan large — 4 s
+## P04 — plan rapproche — 4 s
 
 ```
-caboteur aux feux de position faibles, derive vers les recifs dans la tempete, haute mer demontee, rideaux de pluie, nuit d'encre, feux du navire retroeclaires par la pluie, objectif 35mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
+Claire en entretien d'embauche, ecoute, machoire serree, un recruteur hors champ qui parle de potentiel, salle de reunion vitree de startup, mobilier design, lumiere blanche uniforme, reflets de baie vitree, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
 
-Voix off : Cette nuit-la, la mer a decide autrement.
+Voix off : Des recruteurs de trente ans parlent d'energie, de culture, de potentiel. La porte ne se rouvrira pas.
 
 Image attendue : 04_assets/P04.png
 
-## P05 — plan rapproche — 3 s
+## P05 — plan large — 5 s
 
 ```
-Nora sur la galerie du phare, scrute le large, le visage fouette par la pluie, inquiete, galerie exterieure du phare, rambarde de fer, faisceau tournant qui balaie son visage par intermittence, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+groupe de femmes de 50 ans et plus autour d'une grande table de cafe, discussion animee, verres et ordinateurs melanges, complicite evidente, cafe de quartier le soir, vitrine sur rue, lumiere mixte chaude du cafe contre bleu de la rue, objectif 35mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
 ```
 
-Voix off : Elle sait ce que les rochers font aux coques.
+Voix off : Ex-ingenieures, ex-directrices, ex-fondatrices. Toutes ecartees. Toutes debout.
 
 Image attendue : 04_assets/P05.png
 
-## P06 — plan d'ensemble — 3 s
+## P06 — plan moyen — 4 s
 
 ```
-phare dans la tempete, la lanterne s'eteint d'un coup, l'ile disparait dans le noir, ile vue de la mer, nuit de tempete, extinction : seuls restent les eclairs et l'ecume, objectif 24mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
+Awa, 58 ans, lunettes rondes et tresses grises, ouvre un vieux portable couvert de stickers et retourne l'ecran vers la table, meme table de cafe, le soir, visages eclaires par l'ecran, fond chaud du cafe, objectif 50mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
 
-Voix off : Panne.
+Voix off : Trois semaines, seule, avec une IA en copilote. Ce qu'une equipe entiere aurait mis six mois a sortir.
 
 Image attendue : 04_assets/P06.png
 
-## P07 — plan moyen — 3 s
+## P07 — plan rapproche — 4 s
 
 ```
-Nora, cire ruisselant, remonte l'escalier quatre a quatre, lampe-tempete brandie, escalier en colimacon du phare, seule la lampe-tempete eclaire, halo ambre dans le noir, objectif 35mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+Claire de nuit face a un ecran, apprend a coder, concentration intense, la lueur de l'ecran sur le visage, atelier de brique reconverti, lampes chaudes en fond, blanc froid de l'ecran contre tungstene chaud de l'atelier, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
+
+Voix off : L'IA ne remplace pas quarante ans de metier. Elle les demultiplie.
 
 Image attendue : 04_assets/P07.png
 
-## P08 — gros plan — 4 s
+## P08 — gros plan — 3 s
 
 ```
-mains de Nora sur le carter ouvert du mecanisme, raniment la flamme a main nue, doigts brules par le metal, chambre de la lanterne, flamme qui reprend, ambre intense sur la peau, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+mains d'Awa sur un clavier mecanique, frappent vite, reflets d'interface dans ses lunettes posees a cote, etabli d'atelier, cables et carnets, halo d'ecran, macro contrastee, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
-
-Voix off : Le metal brule. Elle ne lache pas.
 
 Image attendue : 04_assets/P08.png
 
-## P09 — plan large — 5 s
+## P09 — plan large — 4 s
 
 ```
-faisceau du phare retabli, balaie la mer, le caboteur vire de bord et passe au large des recifs, mer demontee entre l'ile et le navire, pinceau de lumiere ambre coupant la pluie, objectif 50mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
+Claire debout face a trois investisseurs de dos, pitche, droite et calme, dans une salle trop grande pour eux, salle de conseil d'un fonds d'investissement, table immense, lumiere zenithale froide, la salle mange les silhouettes, objectif 35mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
 ```
 
-Voix off : Le faisceau a retrouve la mer. Le navire a retrouve sa route.
+Voix off : Inspirantes, mais pas investissables. Le fonds ne rappellera jamais. Elles lancent sans lui.
 
 Image attendue : 04_assets/P09.png
 
-## P10 — plan rapproche — 6 s
+## P10 — plan d'ensemble — 4 s
 
 ```
-Nora assise sur la galerie, epuisee, sourit en regardant la mer redevenue plate, galerie du phare a l'aube, aube grise et douce, premiere lumiere froide apres la nuit ambre, objectif 50mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+atelier de brique en peripherie a l'aube, toutes les fenetres allumees dans la brume, la ville s'eveille derriere, friche industrielle rehabilitee, petit matin, aube grise, fenetres cuivre chaud, brume basse, objectif 24mm --ar 16:9 --sref A_CREER --s 200 --v 8.1 --hd
 ```
 
-Voix off : A l'aube, la mer avait tout oublie. Pas elle.
+Voix off : Le produit trouve ses utilisatrices. Les chiffres montent, portes par celles que le marche avait cesse de regarder.
 
 Image attendue : 04_assets/P10.png
+
+## P11 — plan moyen — 5 s
+
+```
+Claire sur la scene d'une grande conference tech, parle a la salle, cheveux argentes sous les projecteurs, assuree, scene de keynote, salle pleine dans la penombre, projecteurs de scene, contre-jour bordeaux, poussiere de lumiere, objectif 50mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+```
+
+Voix off : Un an plus tard, la salle est pleine.
+
+Image attendue : 04_assets/P11.png
+
+## P12 — plan rapproche — 6 s
+
+```
+Awa en coulisse, regarde la scene depuis l'ombre et sourit en croisant les bras, coulisses de la conference, pendrillons noirs, lisiere de lumiere de scene sur son visage, fond noir, objectif 85mm --ar 16:9 --sref A_CREER --s 200 --v 7 --oref A_CREER --ow 450
+```
+
+Voix off : La revanche n'est pas un retour. C'est une preuve.
+
+Image attendue : 04_assets/P12.png
