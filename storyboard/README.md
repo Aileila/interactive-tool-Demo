@@ -14,9 +14,14 @@ Remplacer `00_histoire/histoire.md`, relancer. Concrètement :
    puis figer la bible après validation.
 3. Réécrire `02_decoupage/plans.json` (un objet par plan).
 4. `python3 scripts/build_prompts.py` → produit `03_prompts/prompts.md`.
-5. Coller chaque prompt dans Midjourney, déposer les images dans
-   `04_assets/` nommées `P01.png`, `P02.png`, etc.
-6. `python3 scripts/build_planche.py` → produit `05_planche/storyboard.pdf`.
+5. Facultatif : `NOTION_TOKEN=... python3 scripts/sync_notion.py` → pousse
+   le projet et ses plans dans les bases Notion de suivi.
+6. Coller chaque prompt dans Midjourney, déposer les images dans
+   `04_assets/` nommées `P01.png`, `P02.png`, etc. Suivre l'avancement
+   dans Notion (statuts, notes, image choisie).
+7. `python3 scripts/build_planche.py` → produit `05_planche/storyboard.pdf`.
+   Relancer `sync_notion.py` passe automatiquement à « integre » les plans
+   dont le PNG est présent.
 
 Les étapes 2 et 3 sont les seules étapes d'écriture. Tout le reste est
 dérivé et régénéré à l'identique par les scripts.
@@ -34,6 +39,8 @@ dérivé et régénéré à l'identique par les scripts.
 | `05_planche/storyboard.pdf` | Planche finale | **non — généré** |
 | `scripts/build_prompts.py` | Moteur de prompts | oui |
 | `scripts/build_planche.py` | Assemblage de la planche | oui |
+| `scripts/sync_notion.py` | Sync du suivi vers Notion | oui |
+| `notion.json` | Identifiants des bases Notion | non (créé une fois) |
 
 ## Règles
 
@@ -56,6 +63,31 @@ dérivé et régénéré à l'identique par les scripts.
   plan identiques consécutives (erreur bloquante sinon).
 - `build_planche.py` signale les images manquantes (case grise dans le PDF
   et liste en console) sans jamais planter.
+
+## Suivi dans Notion
+
+Le dépôt git reste la source de vérité ; Notion est la surface de travail
+pendant la phase humaine (génération Midjourney). Deux bases sous la page
+« Storyboards — Suivi des créations » :
+
+- **Projets** : une ligne par histoire (statut global, ratio, sref, nb de
+  plans, durée totale).
+- **Plans** : une ligne par plan, reliée à son projet — prompt prêt à
+  copier, modèle, durée, voix off, plus trois champs gérés à la main dans
+  Notion : `Statut` (a generer → genere → valide → integre, ou a refaire),
+  `Image choisie`, `Notes`.
+
+`scripts/sync_notion.py` pousse le dépôt vers Notion, jamais l'inverse.
+Il est idempotent : les champs pilotés par le dépôt sont écrasés à chaque
+sync, les champs humains (statut, notes, image) ne sont jamais touchés —
+à une exception près : un plan dont le PNG existe dans `04_assets/` passe
+automatiquement à « integre » (sauf s'il est marqué « a refaire »).
+
+Prérequis pour lancer le script hors session Claude : une intégration
+Notion (https://www.notion.so/my-integrations) ayant accès à la page
+racine, et son jeton dans la variable `NOTION_TOKEN`. Les identifiants des
+bases sont dans `notion.json`. `--dry-run` montre ce qui serait poussé
+sans rien appeler.
 
 ## Dépendances
 
