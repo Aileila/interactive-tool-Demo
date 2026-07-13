@@ -10,6 +10,7 @@ Le PDF est un artefact derive : ne jamais l'editer a la main.
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -18,7 +19,11 @@ from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
-RACINE = Path(__file__).resolve().parent.parent
+RACINE = (
+    Path(os.environ["STORYBOARD_RACINE"]).resolve()
+    if os.environ.get("STORYBOARD_RACINE")
+    else Path(__file__).resolve().parent.parent
+)
 CHEMIN_PLANS = RACINE / "02_decoupage" / "plans.json"
 DOSSIER_ASSETS = RACINE / "04_assets"
 CHEMIN_SORTIE = RACINE / "05_planche" / "storyboard.pdf"

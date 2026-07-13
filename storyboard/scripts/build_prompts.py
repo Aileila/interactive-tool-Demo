@@ -9,10 +9,17 @@ Pour corriger un prompt, corriger bible.json ou plans.json et relancer.
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
-RACINE = Path(__file__).resolve().parent.parent
+# Multi-projets : STORYBOARD_RACINE pointe vers la racine d'un autre projet
+# (meme arborescence). Par defaut : le projet qui contient ce script.
+RACINE = (
+    Path(os.environ["STORYBOARD_RACINE"]).resolve()
+    if os.environ.get("STORYBOARD_RACINE")
+    else Path(__file__).resolve().parent.parent
+)
 CHEMIN_BIBLE = RACINE / "01_bible" / "bible.json"
 CHEMIN_PLANS = RACINE / "02_decoupage" / "plans.json"
 CHEMIN_SORTIE = RACINE / "03_prompts" / "prompts.md"

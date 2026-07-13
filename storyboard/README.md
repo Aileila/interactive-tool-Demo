@@ -95,6 +95,21 @@ racine, et son jeton dans la variable `NOTION_TOKEN`. Les identifiants des
 bases sont dans `notion.json`. `--dry-run` montre ce qui serait poussé
 sans rien appeler.
 
+## Plusieurs projets en parallèle
+
+Les scripts vivent dans `storyboard/scripts/` et servent tous les projets.
+Un autre projet = un autre dossier avec la même arborescence (voir
+`../storyboard-maqnin/`). Pour le piloter, pointer la variable
+`STORYBOARD_RACINE` vers sa racine :
+
+    STORYBOARD_RACINE=storyboard-maqnin python3 storyboard/scripts/build_prompts.py
+    STORYBOARD_RACINE=storyboard-maqnin python3 storyboard/scripts/build_planche.py
+    STORYBOARD_RACINE=storyboard-maqnin python3 storyboard/scripts/sync_notion.py
+
+Sans la variable, les scripts travaillent sur ce dossier-ci. Chaque projet
+a son `notion.json` (les mêmes bases Notion servent à tous les projets :
+une ligne Projets par projet, les plans reliés à leur projet).
+
 ## Dépendances
 
 Python 3 standard + `reportlab` (`pip install reportlab`). Rien d'autre.

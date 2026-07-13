@@ -1,0 +1,23 @@
+{
+  "sref": "A_CREER",
+  "ratio": "16:9",
+  "stylize": 250,
+  "palette": [
+    "ecru fibre de lin",
+    "rouge chardonneret",
+    "noir perle",
+    "gris atelier degrade",
+    "bleu nuit signature",
+    "blanc calligraphie"
+  ],
+  "lumiere": "lumiere studio douce et enveloppante, fond gris degrade, matiere retroeclairee sur les plans d'envol, aucune ombre dure",
+  "focales": ["100mm macro", "85mm", "50mm", "35mm"],
+  "personnages": [
+    {
+      "id": "maqnin",
+      "fiche": "sculpture de chardonneret elegant grandeur nature en fibres de papier, broderie et lin, masque facial rouge profond, calotte noire, joues blanches, aile noire a barre rouge, corps ecru, oeil de perle noire cercle de broderie, ailes deployables en eventail de fils ecrus piquetes de perles noires",
+      "oref_url": "A_CREER",
+      "ow": 450
+    }
+  ]
+}
