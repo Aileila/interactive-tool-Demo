@@ -14,7 +14,11 @@
     "focale": "24mm",
     "personnage": false,
     "personnage_id": null,
-    "voix_off": "Douze ans que Claire faisait tourner cette machine. Un lundi matin, la machine a decide de tourner sans elle."
+    "voix_off": "Douze ans que Claire faisait tourner cette machine. Un lundi matin, la machine a decide de tourner sans elle.",
+    "mouvement": "les fenetres de l'etage allume scintillent, phares lointains en contrebas",
+    "camera": "push-in aerien tres lent vers l'etage allume",
+    "mouvement_en": "the lit floor's windows flicker, distant headlights below",
+    "camera_en": "very slow aerial push-in toward the lit floor"
   },
   {
     "id": "P02",
@@ -31,7 +35,11 @@
     "focale": "35mm",
     "personnage": true,
     "personnage_id": "claire",
-    "voix_off": "Le mot n'est jamais dit. Mais tout le monde l'entend : trop senior."
+    "voix_off": "Le mot n'est jamais dit. Mais tout le monde l'entend : trop senior.",
+    "mouvement": "Claire ferme le carton, des regards se detournent en arriere-plan",
+    "camera": "epaule discrete, leger flottement",
+    "mouvement_en": "Claire closes the box, colleagues glancing away in the background",
+    "camera_en": "discreet handheld, slight float"
   },
   {
     "id": "P03",
@@ -48,7 +56,11 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "claire",
-    "voix_off": ""
+    "voix_off": "",
+    "mouvement": "la main pose le badge sur le carton puis se retire hors champ",
+    "camera": "fixe macro",
+    "mouvement_en": "the hand places the badge on the box then withdraws out of frame",
+    "camera_en": "locked macro frame"
   },
   {
     "id": "P04",
@@ -65,7 +77,11 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "claire",
-    "voix_off": "Des recruteurs de trente ans parlent d'energie, de culture, de potentiel. La porte ne se rouvrira pas."
+    "voix_off": "Des recruteurs de trente ans parlent d'energie, de culture, de potentiel. La porte ne se rouvrira pas.",
+    "mouvement": "Claire cligne lentement, la machoire se serre, reflets qui bougent sur la baie vitree",
+    "camera": "push-in tres lent",
+    "mouvement_en": "Claire blinks slowly, her jaw tightens, reflections drifting on the glass wall",
+    "camera_en": "very slow push-in"
   },
   {
     "id": "P05",
@@ -82,7 +98,11 @@
     "focale": "35mm",
     "personnage": false,
     "personnage_id": null,
-    "voix_off": "Ex-ingenieures, ex-directrices, ex-fondatrices. Toutes ecartees. Toutes debout."
+    "voix_off": "Ex-ingenieures, ex-directrices, ex-fondatrices. Toutes ecartees. Toutes debout.",
+    "mouvement": "discussion animee, un verre se leve, rires silencieux",
+    "camera": "travelling lateral doux derriere la vitrine",
+    "mouvement_en": "animated discussion, a glass raised, silent laughter",
+    "camera_en": "gentle lateral tracking behind the storefront window"
   },
   {
     "id": "P06",
@@ -99,7 +119,11 @@
     "focale": "50mm",
     "personnage": true,
     "personnage_id": "awa",
-    "voix_off": "Trois semaines, seule, avec une IA en copilote. Ce qu'une equipe entiere aurait mis six mois a sortir."
+    "voix_off": "Trois semaines, seule, avec une IA en copilote. Ce qu'une equipe entiere aurait mis six mois a sortir.",
+    "mouvement": "Awa retourne l'ecran vers la table, les visages s'eclairent un a un",
+    "camera": "fixe",
+    "mouvement_en": "Awa turns the screen toward the table, faces lighting up one by one",
+    "camera_en": "locked frame"
   },
   {
     "id": "P07",
@@ -116,7 +140,11 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "claire",
-    "voix_off": "L'IA ne remplace pas quarante ans de metier. Elle les demultiplie."
+    "voix_off": "L'IA ne remplace pas quarante ans de metier. Elle les demultiplie.",
+    "mouvement": "des reflets de code defilent sur le visage concentre de Claire",
+    "camera": "push-in lent",
+    "mouvement_en": "code reflections scrolling across Claire's focused face",
+    "camera_en": "slow push-in"
   },
   {
     "id": "P08",
@@ -133,7 +161,11 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "awa",
-    "voix_off": ""
+    "voix_off": "",
+    "mouvement": "les mains frappent vite, reflets d'interface qui bougent dans les lunettes posees",
+    "camera": "fixe macro",
+    "mouvement_en": "hands typing fast, interface reflections shifting in the resting glasses",
+    "camera_en": "locked macro frame"
   },
   {
     "id": "P09",
@@ -150,7 +182,11 @@
     "focale": "35mm",
     "personnage": true,
     "personnage_id": "claire",
-    "voix_off": "Inspirantes, mais pas investissables. Le fonds ne rappellera jamais. Elles lancent sans lui."
+    "voix_off": "Inspirantes, mais pas investissables. Le fonds ne rappellera jamais. Elles lancent sans lui.",
+    "mouvement": "Claire pitche d'un geste sobre, les trois silhouettes restent immobiles",
+    "camera": "pull-back lent qui agrandit la salle",
+    "mouvement_en": "Claire pitches with a restrained gesture, the three silhouettes staying motionless",
+    "camera_en": "slow pull-back making the room feel larger"
   },
   {
     "id": "P10",
@@ -167,7 +203,11 @@
     "focale": "24mm",
     "personnage": false,
     "personnage_id": null,
-    "voix_off": "Le produit trouve ses utilisatrices. Les chiffres montent, portes par celles que le marche avait cesse de regarder."
+    "voix_off": "Le produit trouve ses utilisatrices. Les chiffres montent, portes par celles que le marche avait cesse de regarder.",
+    "mouvement": "la brume derive, les fenetres cuivre vacillent doucement",
+    "camera": "push-in aerien lent",
+    "mouvement_en": "mist drifting, the copper-lit windows gently flickering",
+    "camera_en": "slow aerial push-in"
   },
   {
     "id": "P11",
@@ -184,7 +224,11 @@
     "focale": "50mm",
     "personnage": true,
     "personnage_id": "claire",
-    "voix_off": "Un an plus tard, la salle est pleine."
+    "voix_off": "Un an plus tard, la salle est pleine.",
+    "mouvement": "Claire parle a la salle, poussiere de lumiere flottant dans les faisceaux",
+    "camera": "orbite lente autour d'elle",
+    "mouvement_en": "Claire speaking to the audience, dust drifting in the light beams",
+    "camera_en": "slow orbit around her"
   },
   {
     "id": "P12",
@@ -201,6 +245,10 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "awa",
-    "voix_off": "La revanche n'est pas un retour. C'est une preuve."
+    "voix_off": "La revanche n'est pas un retour. C'est une preuve.",
+    "mouvement": "Awa croise les bras et sourit, la lisiere de lumiere vacille sur son visage",
+    "camera": "push-in doux",
+    "mouvement_en": "Awa crosses her arms and smiles, the edge of stage light flickering on her face",
+    "camera_en": "gentle push-in"
   }
 ]

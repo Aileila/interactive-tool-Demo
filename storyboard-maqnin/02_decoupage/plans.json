@@ -14,7 +14,11 @@
     "focale": "100mm macro",
     "personnage": false,
     "personnage_id": null,
-    "voix_off": "SON : froissement de papier, presque rien."
+    "voix_off": "SON : froissement de papier, presque rien.",
+    "mouvement": "un fil glisse lentement sur l'echeveau, deux perles roulent d'un centimetre puis s'arretent",
+    "camera": "push-in macro tres lent",
+    "mouvement_en": "a single thread slowly slips across the skein, two black beads roll an inch then settle",
+    "camera_en": "very slow macro push-in"
   },
   {
     "id": "G02",
@@ -31,7 +35,11 @@
     "focale": "100mm macro",
     "personnage": false,
     "personnage_id": null,
-    "voix_off": "SON : tension d'un fil, note grave tenue."
+    "voix_off": "SON : tension d'un fil, note grave tenue.",
+    "mouvement": "la torsade de papier se tend, vibre une fois, puis s'immobilise",
+    "camera": "legere orbite laterale, quelques degres seulement",
+    "mouvement_en": "the paper twist tightens, quivers once, then stills",
+    "camera_en": "subtle lateral orbit, only a few degrees"
   },
   {
     "id": "G03",
@@ -48,7 +56,11 @@
     "focale": "100mm macro",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : silence net, une seule pulsation."
+    "voix_off": "SON : silence net, une seule pulsation.",
+    "mouvement": "le point de lumiere dans l'oeil s'intensifie, les fibres autour fremissent a peine",
+    "camera": "push-in lent vers l'oeil",
+    "mouvement_en": "the catchlight in the bead eye brightens, surrounding fibres barely quiver",
+    "camera_en": "slow push-in toward the eye"
   },
   {
     "id": "G04",
@@ -65,7 +77,11 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : premiere respiration de la nappe musicale."
+    "voix_off": "SON : premiere respiration de la nappe musicale.",
+    "mouvement": "la tete pivote de quelques degres vers la camera, une fibre du cou se souleve",
+    "camera": "fixe, imperceptible recul",
+    "mouvement_en": "the head turns a few degrees toward camera, one neck fibre lifts",
+    "camera_en": "locked frame with an imperceptible pull-back"
   },
   {
     "id": "G05",
@@ -82,7 +98,11 @@
     "focale": "50mm",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : montee organique, percussions de perles."
+    "voix_off": "SON : montee organique, percussions de perles.",
+    "mouvement": "les fibres du corps se tendent une a une, houle tres legere de la matiere",
+    "camera": "orbite lente d'un huitieme de tour",
+    "mouvement_en": "body fibres tighten one by one, a very light swell running through the material",
+    "camera_en": "slow orbit, one eighth of a turn"
   },
   {
     "id": "G06",
@@ -99,7 +119,11 @@
     "focale": "35mm",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : battement d'ailes, sommet de la montee."
+    "voix_off": "SON : battement d'ailes, sommet de la montee.",
+    "mouvement": "les ailes de fils se deploient en eventail complet, appel d'air dans les fibres, perles qui oscillent",
+    "camera": "pull-back lent qui elargit le cadre",
+    "mouvement_en": "the thread wings unfold into a full fan, a rush of air through the fibres, beads swaying",
+    "camera_en": "slow pull-back widening the frame"
   },
   {
     "id": "G07",
@@ -116,7 +140,11 @@
     "focale": "35mm",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : coupure nette de la musique au decollage."
+    "voix_off": "SON : coupure nette de la musique au decollage.",
+    "mouvement": "l'oiseau quitte le socle d'un battement, les fils suspendus retombent lentement dans son sillage",
+    "camera": "tilt-up qui accompagne le decollage",
+    "mouvement_en": "the bird lifts off the plinth with one wingbeat, suspended threads settling slowly in its wake",
+    "camera_en": "tilt-up following the take-off"
   },
   {
     "id": "G08",
@@ -133,7 +161,11 @@
     "focale": "35mm",
     "personnage": false,
     "personnage_id": null,
-    "voix_off": "SON : souffle d'air seul, aucun instrument."
+    "voix_off": "SON : souffle d'air seul, aucun instrument.",
+    "mouvement": "la silhouette traverse le cadre de gauche a droite pendant que le fond glisse du gris au bleu nuit",
+    "camera": "travelling lateral doux",
+    "mouvement_en": "the silhouette crosses the frame left to right while the background shifts from grey to midnight blue",
+    "camera_en": "gentle lateral tracking shot"
   },
   {
     "id": "G09",
@@ -150,7 +182,11 @@
     "focale": "85mm",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : une seconde de silence total."
+    "voix_off": "SON : une seconde de silence total.",
+    "mouvement": "les pattes se posent sur la courbe blanche, leger rebond absorbe, quelques fibres retombent",
+    "camera": "fixe, cadrage serre",
+    "mouvement_en": "the feet land on the white curve, a slight bounce absorbed, a few fibres settling",
+    "camera_en": "locked tight frame"
   },
   {
     "id": "G10",
@@ -167,6 +203,10 @@
     "focale": "50mm",
     "personnage": true,
     "personnage_id": "maqnin",
-    "voix_off": "SON : trois notes de chant de chardonneret, puis silence. POST : lockup MaQnin / maqnin.com sur ce plan."
+    "voix_off": "SON : trois notes de chant de chardonneret, puis silence. POST : lockup MaQnin / maqnin.com sur ce plan.",
+    "mouvement": "immobilite totale, seules quelques fibres respirent dans un air calme",
+    "camera": "push-out tres lent puis fixite complete pour le lockup",
+    "mouvement_en": "total stillness, only a few fibres breathing in calm air",
+    "camera_en": "very slow push-out then complete stillness for the lockup"
   }
 ]

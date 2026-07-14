@@ -28,6 +28,7 @@ from build_prompts import (  # noqa: E402
     CHEMIN_BIBLE, CHEMIN_PLANS, RACINE, STYLIZE_MAX,
     charger_json, construire_prompt, valider_plans,
 )
+from build_animation import construire_prompt_animation  # noqa: E402
 
 CHEMIN_NOTION = RACINE / "notion.json"
 CHEMIN_HISTOIRE = RACINE / "00_histoire" / "histoire.md"
@@ -95,6 +96,7 @@ def lignes_a_pousser():
             "personnage": plan["personnage_id"] or "",
             "prompt": construire_prompt(plan, bible),
             "prompt_fr": construire_prompt(plan, bible, langue="fr"),
+            "prompt_animation": construire_prompt_animation(plan, bible),
             "voix_off": plan["voix_off"],
             "png_present": (DOSSIER_ASSETS / f"{plan['id']}.png").exists(),
         })
@@ -160,6 +162,7 @@ def pousser_plan(token, config, id_projet, ligne, existants):
         "Personnage": texte(ligne["personnage"]),
         "Prompt": texte(ligne["prompt"]),
         "Prompt FR": texte(ligne["prompt_fr"]),
+        "Prompt animation": texte(ligne["prompt_animation"]),
         "Voix off": texte(ligne["voix_off"]),
         "Projet": {"relation": [{"id": id_projet}]},
     }

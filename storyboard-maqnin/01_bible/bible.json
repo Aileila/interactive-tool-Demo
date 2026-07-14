@@ -12,6 +12,19 @@
   ],
   "lumiere": "lumiere studio douce et enveloppante, fond gris degrade, matiere retroeclairee sur les plans d'envol, aucune ombre dure",
   "focales": ["100mm macro", "85mm", "50mm", "35mm"],
+  "animation": {
+    "modele": "seedance-1.0",
+    "resolution": "1080p",
+    "paliers_generation_s": [5, 10],
+    "style": "mouvement lent et contemplatif, immobilite sculpturale, micro-mouvements seulement",
+    "style_en": "slow contemplative motion, sculptural stillness, only micro-movements, physically plausible fibres",
+    "contraintes": [
+      "aucun morphing : la sculpture garde exactement sa forme et sa texture",
+      "les fibres bougent comme du fil reel, jamais comme des plumes biologiques",
+      "le fond reste continu, aucun element nouveau n'entre dans le cadre",
+      "premiere frame = image Midjourney validee, fidelite maximale"
+    ]
+  },
   "personnages": [
     {
       "id": "maqnin",

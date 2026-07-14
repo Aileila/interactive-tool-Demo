@@ -22,6 +22,14 @@ Remplacer `00_histoire/histoire.md`, relancer. Concrètement :
 7. `python3 scripts/build_planche.py` → produit `05_planche/storyboard.pdf`.
    Relancer `sync_notion.py` passe automatiquement à « integre » les plans
    dont le PNG est présent.
+8. `python3 scripts/build_animation.py` → produit `03_prompts/animation.md`,
+   le document d'exécution Seedance (image-to-video : chaque image de
+   `04_assets/` est la première frame, le prompt ne décrit que le mouvement
+   et la caméra). Générer les clips dans Seedance, les déposer dans
+   `06_clips/` nommés `P01.mp4`, etc.
+9. `python3 scripts/assemble_film.py` → coupe chaque clip à sa durée utile,
+   normalise et concatène le bout-à-bout `05_planche/film.mp4` (sans son :
+   la bande sonore se fait au montage). Nécessite ffmpeg.
 
 Les étapes 2 et 3 sont les seules étapes d'écriture. Tout le reste est
 dérivé et régénéré à l'identique par les scripts.
@@ -40,6 +48,11 @@ dérivé et régénéré à l'identique par les scripts.
 | `scripts/build_prompts.py` | Moteur de prompts | oui |
 | `scripts/build_planche.py` | Assemblage de la planche | oui |
 | `scripts/sync_notion.py` | Sync du suivi vers Notion | oui |
+| `scripts/build_animation.py` | Document d'exécution Seedance | oui |
+| `scripts/assemble_film.py` | Bout-à-bout vidéo (ffmpeg) | oui |
+| `03_prompts/animation.md` | Prompts d'animation | **non — généré** |
+| `06_clips/` | MP4 déposés depuis Seedance | dépôt manuel |
+| `05_planche/film.mp4` | Bout-à-bout | **non — généré** |
 | `notion.json` | Identifiants des bases Notion | non (créé une fois) |
 
 ## Règles
@@ -69,6 +82,12 @@ dérivé et régénéré à l'identique par les scripts.
   plan identiques consécutives (erreur bloquante sinon).
 - `build_planche.py` signale les images manquantes (case grise dans le PDF
   et liste en console) sans jamais planter.
+- Animation : un prompt Seedance ne redécrit jamais l'image (le modèle voit
+  la première frame), il décrit le mouvement, la caméra et le tempo. Les
+  champs `mouvement` / `camera` (et `_en`) vivent dans `plans.json`, le
+  style global de mouvement et les contraintes dans `bible.json` → bloc
+  `animation`. Durées : Seedance génère par paliers (5 ou 10 s), le moteur
+  indique le palier à générer et `duree_s` reste la durée utile au montage.
 
 ## Suivi dans Notion
 
