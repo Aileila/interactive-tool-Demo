@@ -65,6 +65,29 @@ def construire_prompt_animation(plan, bible, langue=None):
             f"{animation['style']}.")
 
 
+def construire_prompt_complet(plan, bible):
+    """Variante text-to-video : prompt autonome, sans image de depart.
+
+    A n'utiliser qu'en secours (plan sans personnage, ou i2v qui morphe) :
+    sans premiere frame, Seedance ne garantit pas l'identite visuelle
+    d'un plan a l'autre.
+    """
+    animation = bible["animation"]
+    if all(plan.get(c) for c in ["sujet_en", "action_en", "lieu_en",
+                                 "lumiere_en", "mouvement_en", "camera_en"]):
+        description = ", ".join([
+            plan["sujet_en"], plan["action_en"],
+            plan["lieu_en"], plan["lumiere_en"],
+        ])
+        return (f"{description}. {plan['mouvement_en']}. "
+                f"Camera: {plan['camera_en']}. {animation['style_en']}.")
+    description = ", ".join([
+        plan["sujet"], plan["action"], plan["lieu"], plan["lumiere"],
+    ])
+    return (f"{description}. {plan['mouvement']}. "
+            f"Caméra : {plan['camera']}. {animation['style']}.")
+
+
 def palier_generation(duree_s, paliers):
     """Plus petit palier Seedance couvrant la duree utile du plan."""
     for p in sorted(paliers):
@@ -114,6 +137,15 @@ def main():
         lignes.append("")
         lignes.append("```")
         lignes.append(construire_prompt_animation(plan, bible))
+        lignes.append("```")
+        lignes.append("")
+        lignes.append(
+            "Variante text-to-video (secours : plan sans personnage, ou "
+            "i2v qui morphe — identite visuelle non garantie) :"
+        )
+        lignes.append("")
+        lignes.append("```")
+        lignes.append(construire_prompt_complet(plan, bible))
         lignes.append("```")
         lignes.append("")
         if plan["voix_off"]:
