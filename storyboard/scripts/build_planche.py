@@ -9,11 +9,13 @@ mais ne bloque jamais la generation.
 Le PDF est un artefact derive : ne jamais l'editer a la main.
 """
 
+import io
 import json
 import os
 import sys
 from pathlib import Path
 
+from PIL import Image
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import mm
 from reportlab.lib.utils import ImageReader
@@ -35,6 +37,21 @@ LIGNES = 2
 GOUTTIERE = 8 * mm
 RATIO_IMAGE = 16 / 9
 HAUTEUR_LEGENDE = 22 * mm
+# Les vignettes sont recompressees a l'embarquement pour garder un PDF
+# leger ; les originaux de 04_assets/ ne sont jamais modifies.
+LARGEUR_VIGNETTE_PX = 1200
+QUALITE_JPEG = 82
+
+
+def vignette_compressee(chemin_image):
+    image = Image.open(chemin_image).convert("RGB")
+    if image.width > LARGEUR_VIGNETTE_PX:
+        hauteur = round(image.height * LARGEUR_VIGNETTE_PX / image.width)
+        image = image.resize((LARGEUR_VIGNETTE_PX, hauteur))
+    tampon = io.BytesIO()
+    image.save(tampon, "JPEG", quality=QUALITE_JPEG)
+    tampon.seek(0)
+    return tampon
 
 
 def charger_plans():
@@ -71,7 +88,7 @@ def dessiner_vignette(pdf, plan, x, y, largeur):
     y_image = y - hauteur_image
     if image_presente:
         pdf.drawImage(
-            ImageReader(str(chemin_image)), x, y_image,
+            ImageReader(vignette_compressee(chemin_image)), x, y_image,
             width=largeur, height=hauteur_image,
             preserveAspectRatio=True, anchor="c",
         )
