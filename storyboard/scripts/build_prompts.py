@@ -123,12 +123,16 @@ def construire_prompt(plan, bible, langue=None):
             plan["lumiere"],
             f"objectif {plan['focale']}",
         ])
-    parametres = " ".join([
+    morceaux = [
         f"--ar {bible['ratio']}",
         f"--sref {bible['sref']}",
         f"--s {stylize}",
-        parametres_modele(plan, bible),
-    ])
+    ]
+    # Profil de personnalisation Midjourney, optionnel, identique partout.
+    if bible.get("profile"):
+        morceaux.append(f"--profile {bible['profile']}")
+    morceaux.append(parametres_modele(plan, bible))
+    parametres = " ".join(morceaux)
     return f"{description} {parametres}"
 
 

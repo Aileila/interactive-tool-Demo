@@ -1,5 +1,6 @@
 {
-  "sref": "A_CREER",
+  "sref": "https://raw.githubusercontent.com/Aileila/interactive-tool-Demo/claude/midjourney-storyboard-pipeline-czxfkw/storyboard-maqnin/04_assets/G06.png",
+  "profile": "xlpebxu",
   "ratio": "16:9",
   "stylize": 250,
   "palette": [
@@ -29,7 +30,7 @@
     {
       "id": "maqnin",
       "fiche": "sculpture de chardonneret elegant grandeur nature en fibres de papier, broderie et lin, masque facial rouge profond, calotte noire, joues blanches, aile noire a barre rouge, corps ecru, oeil de perle noire cercle de broderie, ailes deployables en eventail de fils ecrus piquetes de perles noires",
-      "oref_url": "A_CREER",
+      "oref_url": "https://raw.githubusercontent.com/Aileila/interactive-tool-Demo/claude/midjourney-storyboard-pipeline-czxfkw/storyboard-maqnin/04_assets/G04.png",
       "ow": 450
     }
   ]

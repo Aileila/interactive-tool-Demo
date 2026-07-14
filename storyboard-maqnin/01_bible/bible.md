@@ -17,12 +17,11 @@ traduit en règles d'image.
 
 - **Ratio** : 16:9 (à trancher avant production si la cible est verticale).
 - **Stylize** : 250 (le plafond — le générique est un objet esthétique).
-- **`--sref`** : `A_CREER` — à construire d'abord à partir du **clip
-  existant** : extraire 6 à 8 frames nettes de la vidéo actuelle
-  (macro tête, ailes déployées, plan lettrage bleu nuit), les compléter de
-  2 à 3 références de sculpture textile (style Zim & Zou / paper art), et
-  créer le code sref dans Midjourney. Le générique doit être raccord avec
-  ce qui est déjà tourné.
+- **`--sref`** : l'URL publique de `04_assets/G06.png` (l'éventail de
+  fils, l'image la plus signature du style). Le style se référence donc
+  sur une image déjà validée du projet — raccord garanti.
+- **`--profile`** : `xlpebxu`, le profil de personnalisation Midjourney du
+  compte, appliqué à tous les plans.
 
 ## Palette
 
@@ -49,9 +48,10 @@ rouge profond, calotte noire, joues blanches, aile noire à barre rouge,
 œil de perle noire cerclé de broderie, ailes déployables en éventail de
 fils écrus piquetés de perles noires.
 
-**URL oref** : `A_CREER` — utiliser une frame nette du clip existant
-(tête de trois quarts, acte 2) comme image de référence : c'est elle qui
-garantit que les nouveaux plans prolongent l'existant.
+**URL oref** : l'URL publique de `04_assets/G04.png` — la tête de trois
+quarts validée. C'est elle qui garantit que chaque nouveau plan prolonge
+l'existant. Pour changer de référence : remplacer l'URL ici et relancer
+le moteur.
 
 ## Son (pilier du montage, hors Midjourney)
 
