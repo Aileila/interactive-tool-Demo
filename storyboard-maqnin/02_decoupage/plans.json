@@ -162,9 +162,9 @@
     "personnage": false,
     "personnage_id": null,
     "voix_off": "SON : souffle d'air seul, aucun instrument.",
-    "mouvement": "la silhouette traverse le cadre de gauche a droite pendant que le fond glisse du gris au bleu nuit",
+    "mouvement": "l'oiseau glisse dans le cadre, ailes de fils tendues, pendant que le ciel s'assombrit vers le bleu nuit",
     "camera": "travelling lateral doux",
-    "mouvement_en": "the silhouette crosses the frame left to right while the background shifts from grey to midnight blue",
+    "mouvement_en": "the bird glides through the frame, thread wings taut, as the stormy sky darkens toward midnight blue",
     "camera_en": "gentle lateral tracking shot"
   },
   {
@@ -183,9 +183,9 @@
     "personnage": true,
     "personnage_id": "maqnin",
     "voix_off": "SON : une seconde de silence total.",
-    "mouvement": "les pattes se posent sur la courbe blanche, leger rebond absorbe, quelques fibres retombent",
+    "mouvement": "l'oiseau se pose et s'affaisse doucement sur ses pattes, les ailes se replient, quelques fibres retombent",
     "camera": "fixe, cadrage serre",
-    "mouvement_en": "the feet land on the white curve, a slight bounce absorbed, a few fibres settling",
+    "mouvement_en": "the bird settles softly onto its feet, wings folding in, a few fibres drifting down",
     "camera_en": "locked tight frame"
   },
   {

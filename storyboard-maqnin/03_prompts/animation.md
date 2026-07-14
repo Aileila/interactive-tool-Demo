@@ -98,10 +98,10 @@ Clip attendu : 06_clips/G07.mp4
 
 ## G08 — plan d'ensemble — utile 3 s / générer 5 s
 
-Première frame : 04_assets/G08.png  ⚠ IMAGE MANQUANTE — générer l'image d'abord
+Première frame : 04_assets/G08.png
 
 ```
-the silhouette crosses the frame left to right while the background shifts from grey to midnight blue. Camera: gentle lateral tracking shot. slow contemplative motion, sculptural stillness, only micro-movements, physically plausible fibres.
+the bird glides through the frame, thread wings taut, as the stormy sky darkens toward midnight blue. Camera: gentle lateral tracking shot. slow contemplative motion, sculptural stillness, only micro-movements, physically plausible fibres.
 ```
 
 Bande son en regard : SON : souffle d'air seul, aucun instrument.
@@ -110,10 +110,10 @@ Clip attendu : 06_clips/G08.mp4
 
 ## G09 — plan rapproche — utile 3 s / générer 5 s
 
-Première frame : 04_assets/G09.png  ⚠ IMAGE MANQUANTE — générer l'image d'abord
+Première frame : 04_assets/G09.png
 
 ```
-the feet land on the white curve, a slight bounce absorbed, a few fibres settling. Camera: locked tight frame. slow contemplative motion, sculptural stillness, only micro-movements, physically plausible fibres.
+the bird settles softly onto its feet, wings folding in, a few fibres drifting down. Camera: locked tight frame. slow contemplative motion, sculptural stillness, only micro-movements, physically plausible fibres.
 ```
 
 Bande son en regard : SON : une seconde de silence total.
@@ -122,7 +122,7 @@ Clip attendu : 06_clips/G09.mp4
 
 ## G10 — plan d'ensemble — utile 4 s / générer 5 s
 
-Première frame : 04_assets/G10.png  ⚠ IMAGE MANQUANTE — générer l'image d'abord
+Première frame : 04_assets/G10.png
 
 ```
 total stillness, only a few fibres breathing in calm air. Camera: very slow push-out then complete stillness for the lockup. slow contemplative motion, sculptural stillness, only micro-movements, physically plausible fibres.
