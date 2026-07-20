@@ -1,0 +1,127 @@
+{
+  "schema": "nos-0.1",
+  "title": "Le Corbeau et le Renard (La Fontaine, 1668)",
+  "description": "Conversion exécutable de l'annotation E1.1 (grain fin).",
+  "valueAxes": ["subsistance", "estime-de-soi", "verite-mensonge", "lucidite-aveuglement"],
+  "entities": [
+    { "id": "fromage", "kind": "objet", "props": { "comestible": true } },
+    { "id": "arbre", "kind": "lieu" }
+  ],
+  "agents": [
+    {
+      "id": "CORBEAU", "kind": "agent",
+      "beliefs": ["je tiens un fromage", "mon plumage est beau (incertain)"],
+      "desires": { "want": "être admiré", "need": "juger la flatterie avec lucidité" },
+      "values": [ { "axis": "estime-de-soi", "weight": 3 }, { "axis": "subsistance", "weight": 2 } ],
+      "flaw": "vanité : croyance protégée « les compliments qu'on me fait sont sincères »"
+    },
+    {
+      "id": "RENARD", "kind": "agent",
+      "beliefs": ["le corbeau tient un fromage", "le corbeau est vaniteux"],
+      "desires": { "want": "obtenir le fromage" },
+      "values": [ { "axis": "subsistance", "weight": 3 }, { "axis": "verite-mensonge", "weight": -1 } ]
+    },
+    { "id": "AUD", "kind": "audience", "genreContract": ["fable => une morale sera délivrée"] }
+  ],
+  "deltas": [
+    {
+      "id": "d1", "t": 1,
+      "change": { "summary": "CORBEAU possède le fromage, perché sur l'arbre",
+                  "assertions_add": [ { "subject": "CORBEAU", "predicate": "possède", "object": "fromage" },
+                                      { "subject": "CORBEAU", "predicate": "situé-sur", "object": "arbre" } ] },
+      "causes": [],
+      "charges": [ { "agent": "CORBEAU", "axis": "subsistance", "polarity": "+", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["CORBEAU", "RENARD", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d2", "t": 2,
+      "change": { "summary": "RENARD forme le désir du fromage" },
+      "causes": [ { "type": "psy", "from": "d1" } ],
+      "charges": [ { "agent": "RENARD", "axis": "subsistance", "polarity": "+", "magnitude": 1, "mode": "anticipated" } ],
+      "scope": { "observed": ["RENARD", "AUD"], "hidden": ["CORBEAU"] },
+      "irreversible": false
+    },
+    {
+      "id": "d3", "t": 3,
+      "change": { "summary": "RENARD adopte l'intention d'obtenir le fromage par flatterie" },
+      "causes": [ { "type": "psy", "from": "d2" },
+                  { "type": "psy", "disposition": "RENARD.belief:le-corbeau-est-vaniteux" } ],
+      "charges": [ { "agent": "RENARD", "axis": "verite-mensonge", "polarity": "-", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["RENARD", "AUD"], "hidden": ["CORBEAU"] },
+      "irreversible": false
+    },
+    {
+      "id": "d4", "t": 4,
+      "change": { "summary": "RENARD flatte : « votre ramage égale votre plumage » (assertion fausse-en-intention)", "attempt": true },
+      "causes": [ { "type": "psy", "from": "d3" } ],
+      "charges": [ { "agent": "CORBEAU", "axis": "estime-de-soi", "polarity": "+", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["CORBEAU", "RENARD", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d5", "t": 5,
+      "change": { "summary": "CORBEAU croit la flatterie sincère (misbelief installée)" },
+      "causes": [ { "type": "psy", "from": "d4" },
+                  { "type": "psy", "disposition": "CORBEAU.flaw:vanité" } ],
+      "charges": [ { "agent": "CORBEAU", "axis": "lucidite-aveuglement", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["CORBEAU"], "inferable": ["RENARD", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d6", "t": 6,
+      "change": { "summary": "CORBEAU ouvre un large bec pour chanter", "attempt": true },
+      "causes": [ { "type": "psy", "from": "d5" } ],
+      "charges": [ { "agent": "CORBEAU", "axis": "estime-de-soi", "polarity": "+", "magnitude": 1, "mode": "anticipated" } ],
+      "scope": { "observed": ["CORBEAU", "RENARD", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d7", "t": 7,
+      "change": { "summary": "le fromage tombe ; RENARD s'en saisit",
+                  "assertions_remove": [ { "subject": "CORBEAU", "predicate": "possède", "object": "fromage" } ],
+                  "assertions_add": [ { "subject": "RENARD", "predicate": "possède", "object": "fromage" } ] },
+      "causes": [ { "type": "phy", "from": "d6" } ],
+      "charges": [ { "agent": "CORBEAU", "axis": "subsistance", "polarity": "-", "magnitude": 2, "mode": "realized" },
+                   { "agent": "CORBEAU", "axis": "estime-de-soi", "polarity": "-", "magnitude": 2, "mode": "realized" },
+                   { "agent": "RENARD", "axis": "subsistance", "polarity": "+", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["CORBEAU", "RENARD", "AUD"] },
+      "irreversible": true
+    },
+    {
+      "id": "d8", "t": 8,
+      "change": { "summary": "RENARD révèle la manœuvre : « tout flatteur vit aux dépens de celui qui l'écoute »" },
+      "causes": [ { "type": "psy", "from": "d7" }, { "type": "them", "from": "d3" } ],
+      "charges": [ { "agent": "CORBEAU", "axis": "estime-de-soi", "polarity": "-", "magnitude": 1, "mode": "realized" },
+                   { "agent": "AUD", "axis": "verite-mensonge", "polarity": "+", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["CORBEAU", "RENARD", "AUD"] },
+      "irreversible": true
+    },
+    {
+      "id": "d9", "t": 9,
+      "change": { "summary": "CORBEAU jure, mais un peu tard, qu'on ne l'y prendrait plus (self-revelation)" },
+      "causes": [ { "type": "psy", "from": "d8" } ],
+      "charges": [ { "agent": "CORBEAU", "axis": "lucidite-aveuglement", "polarity": "+", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["CORBEAU", "RENARD", "AUD"] },
+      "irreversible": true
+    }
+  ],
+  "commitments": [
+    { "id": "c1", "creditor": "AUD", "content": "contrat de genre : une morale sera délivrée",
+      "force": "genre", "status": "honored", "resolved_by": "d8" },
+    { "id": "c2", "debtor": "CORBEAU", "creditor": ["CORBEAU", "AUD"],
+      "content": "serment : ne plus se laisser prendre à la flatterie",
+      "force": "oath", "status": "open", "opened_by": "d9" }
+  ],
+  "secrets": [
+    { "id": "s1", "holder": "RENARD", "content": "la flatterie est un moyen d'obtenir le fromage",
+      "hidden_from": ["CORBEAU"], "opened_by": "d3", "revealed_by": "d8" }
+  ],
+  "revelations": [
+    { "id": "r1", "delta": "d8", "reveals_secret": "s1", "to": ["CORBEAU"], "twist": true }
+  ],
+  "arcs": [
+    { "agent": "CORBEAU", "label": "aveuglement -> lucidité (coût : fromage + humiliation)",
+      "deltas": ["d7", "d8", "d9"], "thresholds": ["d7"], "self_revelation": "d9" }
+  ]
+}

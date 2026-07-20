@@ -1,0 +1,160 @@
+{
+  "schema": "nos-0.1",
+  "title": "La Cité d'Ambre — session de jeu narratif synthétique",
+  "description": "Conversion exécutable de l'annotation E1.3 (trace interactive, mode storylets).",
+  "valueAxes": ["loyaute", "fortune", "legalite", "liberte", "vie-mort"],
+  "norms": [
+    { "id": "n1", "content": "le vol de cargaison est illégal", "emitter": "GARDE", "sanction": "arrestation" }
+  ],
+  "agents": [
+    {
+      "id": "PJ", "kind": "agent",
+      "beliefs": ["je dois 300 ambres au passeur SILAS"],
+      "desires": { "want": "solder ma dette", "need": "décider à qui va ma loyauté" },
+      "values": [ { "axis": "loyaute", "weight": null }, { "axis": "fortune", "weight": null } ]
+    },
+    { "id": "SILAS", "kind": "agent",
+      "desires": { "want": "récupérer sa créance" },
+      "values": [ { "axis": "fortune", "weight": 3 } ] },
+    { "id": "MIRA", "kind": "agent",
+      "values": [ { "axis": "loyaute", "weight": 3 } ] },
+    { "id": "GARDE", "kind": "collective", "members": [] },
+    { "id": "JOUEUR", "kind": "audience" }
+  ],
+  "bindings": [ { "player": "JOUEUR", "agent": "PJ", "audience": "JOUEUR" } ],
+  "mechanics": [
+    { "id": "m1", "family": "disruption",
+      "preconditions": ["commitment ouvert : dette de PJ"],
+      "proposes": "info : une cargaison mal gardée" },
+    { "id": "m2", "family": "relationnelle",
+      "preconditions": ["relation(MIRA,PJ) > 0", "PJ en difficulté"],
+      "proposes": "MIRA offre une aide risquée" },
+    { "id": "m3", "family": "conflictuelle",
+      "preconditions": ["PJ a agi illégalement", "GARDE alertée"],
+      "proposes": "menace d'arrestation" },
+    { "id": "m4", "family": "contractuelle",
+      "preconditions": ["échéance proche", "dette ouverte"],
+      "proposes": "escalade de la menace du créancier" },
+    { "id": "m5", "family": "conflictuelle",
+      "preconditions": ["PJ détient un secret monnayable"],
+      "proposes": "trahison lucrative (forcer un dilemme et le donner à jouer)" }
+  ],
+  "deltas": [
+    {
+      "id": "d1", "t": 1,
+      "change": { "summary": "SILAS rappelle la dette et fixe l'échéance à la nouvelle lune" },
+      "causes": [ { "type": "soc", "exogenous": true }, { "type": "soc", "commitment": "c1" } ],
+      "charges": [ { "agent": "PJ", "axis": "fortune", "polarity": "-", "magnitude": 2, "mode": "anticipated" } ],
+      "scope": { "observed": ["PJ", "SILAS", "JOUEUR"] },
+      "irreversible": false,
+      "via": "m4"
+    },
+    {
+      "id": "d2", "t": 2,
+      "change": { "summary": "rumeur : cargaison d'ambre mal gardée au quai 7" },
+      "causes": [ { "type": "soc", "from": "d1" } ],
+      "charges": [],
+      "scope": { "observed": ["PJ", "JOUEUR"] },
+      "irreversible": false,
+      "via": "m1"
+    },
+    {
+      "id": "d3", "t": 3,
+      "change": { "summary": "MIRA propose de faire le guet, par amitié" },
+      "causes": [ { "type": "soc", "from": "d2" }, { "type": "psy", "disposition": "relation:MIRA->PJ" } ],
+      "charges": [ { "agent": "PJ", "axis": "loyaute", "polarity": "+", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["PJ", "MIRA", "JOUEUR"] },
+      "irreversible": false,
+      "via": "m2"
+    },
+    {
+      "id": "d4", "t": 4,
+      "change": { "summary": "CHOIX 1 : PJ accepte l'aide de MIRA" },
+      "causes": [ { "type": "psy", "from": "d3" }, { "type": "psy", "from": "d1" } ],
+      "charges": [ { "agent": "PJ", "axis": "loyaute", "polarity": "+", "magnitude": 1, "mode": "realized" },
+                   { "agent": "MIRA", "axis": "vie-mort", "polarity": "-", "magnitude": 1, "mode": "anticipated" } ],
+      "scope": { "observed": ["PJ", "MIRA", "JOUEUR"] },
+      "irreversible": false,
+      "choice": { "by": "JOUEUR", "options": ["seul", "avec MIRA", "renoncer"], "chosen": "avec MIRA" }
+    },
+    {
+      "id": "d5", "t": 5,
+      "change": { "summary": "vol de la cargaison : réussite partielle — l'alarme est donnée", "attempt": true },
+      "causes": [ { "type": "psy", "from": "d2" }, { "type": "phy", "from": "d4" },
+                  { "type": "phy", "exogenous": true } ],
+      "charges": [ { "agent": "PJ", "axis": "fortune", "polarity": "+", "magnitude": 2, "mode": "realized" },
+                   { "agent": "PJ", "axis": "legalite", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["PJ", "MIRA", "JOUEUR"], "inferable": ["GARDE"] },
+      "irreversible": true,
+      "violates_norms": ["n1"]
+    },
+    {
+      "id": "d6", "t": 6,
+      "change": { "summary": "MIRA est identifiée par la GARDE en couvrant la fuite de PJ" },
+      "causes": [ { "type": "phy", "from": "d5" }, { "type": "psy", "from": "d4" } ],
+      "requires": ["d4"],
+      "charges": [ { "agent": "MIRA", "axis": "liberte", "polarity": "-", "magnitude": 3, "mode": "realized" },
+                   { "agent": "PJ", "axis": "loyaute", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["MIRA", "GARDE", "JOUEUR"], "hidden": ["PJ"] },
+      "irreversible": true,
+      "via": "m3"
+    },
+    {
+      "id": "d7", "t": 7,
+      "change": { "summary": "PJ solde la dette : 300 ambres remis à SILAS" },
+      "causes": [ { "type": "phy", "from": "d5" }, { "type": "soc", "commitment": "c1" } ],
+      "charges": [ { "agent": "PJ", "axis": "fortune", "polarity": "-", "magnitude": 2, "mode": "realized" },
+                   { "agent": "PJ", "axis": "liberte", "polarity": "+", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["PJ", "SILAS", "JOUEUR"] },
+      "irreversible": true
+    },
+    {
+      "id": "d8", "t": 8,
+      "change": { "summary": "PJ apprend l'arrestation de MIRA" },
+      "causes": [ { "type": "soc", "from": "d6" } ],
+      "charges": [ { "agent": "PJ", "axis": "loyaute", "polarity": "-", "magnitude": 3, "mode": "realized" } ],
+      "scope": { "observed": ["PJ", "JOUEUR"] },
+      "irreversible": false
+    },
+    {
+      "id": "d9", "t": 9,
+      "change": { "summary": "CHOIX 2 : dilemme délégué — vendre un témoin / se livrer à sa place / abandonner MIRA" },
+      "causes": [ { "type": "psy", "from": "d8" } ],
+      "charges": [],
+      "scope": { "observed": ["PJ", "JOUEUR"] },
+      "irreversible": false,
+      "via": "m5",
+      "choice": { "by": "JOUEUR",
+                  "options": ["vendre l'identité d'un témoin", "se livrer à sa place", "abandonner MIRA"],
+                  "chosen": "se livrer à sa place" }
+    },
+    {
+      "id": "d10", "t": 10,
+      "change": { "summary": "PJ se livre ; MIRA libérée ; SILAS empoche la cargaison restante" },
+      "causes": [ { "type": "psy", "from": "d9" } ],
+      "charges": [ { "agent": "PJ", "axis": "liberte", "polarity": "-", "magnitude": 3, "mode": "realized" },
+                   { "agent": "PJ", "axis": "loyaute", "polarity": "+", "magnitude": 3, "mode": "realized" },
+                   { "agent": "MIRA", "axis": "liberte", "polarity": "+", "magnitude": 3, "mode": "realized" } ],
+      "scope": { "observed": ["PJ", "MIRA", "SILAS", "GARDE", "JOUEUR"] },
+      "irreversible": true
+    }
+  ],
+  "commitments": [
+    { "id": "c1", "debtor": "PJ", "creditor": "SILAS", "content": "300 ambres",
+      "force": "threat", "deadline": "la nouvelle lune", "status": "honored", "resolved_by": "d7" },
+    { "id": "c2", "debtor": "PJ", "creditor": "MIRA",
+      "content": "implicite : ne pas exposer MIRA au danger en acceptant son aide",
+      "force": "implicit", "status": "betrayed", "opened_by": "d4", "resolved_by": "d6" },
+    { "id": "c3", "debtor": "PJ", "creditor": "MIRA",
+      "content": "dette morale née de l'arrestation de MIRA (faute, pas promesse)",
+      "force": "moral", "status": "honored", "opened_by": "d8", "resolved_by": "d10" }
+  ],
+  "secrets": [],
+  "revelations": [
+    { "id": "r1", "delta": "d8", "reveals_delta": "d6", "to": ["PJ"], "twist": false }
+  ],
+  "arcs": [
+    { "agent": "PJ", "label": "le need 'à qui va ma loyauté' tranché en acte",
+      "deltas": ["d10"], "thresholds": ["d10"], "self_revelation": "d10" }
+  ]
+}

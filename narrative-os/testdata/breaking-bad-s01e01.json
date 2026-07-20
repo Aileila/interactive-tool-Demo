@@ -1,0 +1,190 @@
+{
+  "schema": "nos-0.1",
+  "title": "Breaking Bad S01E01 (pilote, 2008) — annotation analytique",
+  "description": "Conversion exécutable de l'annotation E1.2 (grain grossier, fabula seule ; le flashforward d'ouverture est une opération de discours et n'existe pas ici).",
+  "valueAxes": ["vie-mort", "famille", "fierte-humiliation", "legalite", "verite-mensonge", "subsistance", "liberte"],
+  "norms": [
+    { "id": "n1", "content": "fabriquer/vendre de la méthamphétamine est illégal et socialement condamné",
+      "emitter": "SOCIETE", "sanction": "prison, opprobre" }
+  ],
+  "entities": [
+    { "id": "SOCIETE", "kind": "institution" },
+    { "id": "WALTJR", "kind": "personne" }
+  ],
+  "agents": [
+    {
+      "id": "WALT", "kind": "agent",
+      "beliefs": ["je vaux plus que ma vie actuelle", "ma famille sera démunie sans moi"],
+      "desires": { "want": "laisser sa famille à l'abri du besoin",
+                   "need": "reconnaître son orgueil / se sentir puissant, vivant" },
+      "values": [ { "axis": "famille", "weight": 3 }, { "axis": "fierte-humiliation", "weight": 3 },
+                  { "axis": "legalite", "weight": 1 } ],
+      "flaw": "orgueil blessé : croyance protégée « le monde m'a volé ce qui me revenait »"
+    },
+    { "id": "SKYLER", "kind": "agent", "beliefs": ["Walt est un mari prévisible et honnête"] },
+    { "id": "JESSE", "kind": "agent",
+      "desires": { "want": "argent facile, survie" },
+      "values": [ { "axis": "liberte", "weight": 2 } ] },
+    { "id": "HANK", "kind": "agent", "props": { "métier": "agent DEA" } },
+    { "id": "FAMILLE", "kind": "collective", "members": ["SKYLER", "WALTJR"] },
+    { "id": "AUD", "kind": "audience",
+      "genreContract": ["drame criminel => la transgression aura des conséquences"] }
+  ],
+  "deltas": [
+    {
+      "id": "d1", "t": 1,
+      "change": { "summary": "état initial : WALT, 50 ans, surqualifié, deux emplois humiliants" },
+      "causes": [],
+      "charges": [ { "agent": "WALT", "axis": "fierte-humiliation", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "SKYLER", "FAMILLE", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d2", "t": 2,
+      "change": { "summary": "humiliation au lave-auto devant ses élèves" },
+      "causes": [ { "type": "soc", "from": "d1" } ],
+      "charges": [ { "agent": "WALT", "axis": "fierte-humiliation", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d3", "t": 3,
+      "change": { "summary": "diagnostic : cancer du poumon inopérable, pronostic ~2 ans" },
+      "causes": [ { "type": "phy", "exogenous": true } ],
+      "charges": [ { "agent": "WALT", "axis": "vie-mort", "polarity": "-", "magnitude": 3, "mode": "anticipated" },
+                   { "agent": "FAMILLE", "axis": "subsistance", "polarity": "-", "magnitude": 3, "mode": "anticipated" } ],
+      "scope": { "observed": ["WALT", "AUD"], "hidden": ["SKYLER", "FAMILLE", "HANK"] },
+      "irreversible": true
+    },
+    {
+      "id": "d4", "t": 4,
+      "change": { "summary": "WALT tait le diagnostic à sa famille" },
+      "causes": [ { "type": "psy", "from": "d3" }, { "type": "psy", "disposition": "WALT.flaw:orgueil" } ],
+      "charges": [ { "agent": "WALT", "axis": "verite-mensonge", "polarity": "-", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d5", "t": 5,
+      "change": { "summary": "ride-along avec HANK : WALT découvre l'argent de la méthamphétamine" },
+      "causes": [ { "type": "soc", "exogenous": true }, { "type": "psy", "from": "d3" } ],
+      "charges": [ { "agent": "WALT", "axis": "subsistance", "polarity": "+", "magnitude": 2, "mode": "anticipated" } ],
+      "scope": { "observed": ["WALT", "HANK", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d6", "t": 6,
+      "change": { "summary": "WALT aperçoit JESSE en fuite lors du raid" },
+      "causes": [ { "type": "phy", "from": "d5" } ],
+      "charges": [],
+      "scope": { "observed": ["WALT", "AUD"], "hidden": ["HANK"] },
+      "irreversible": false
+    },
+    {
+      "id": "d7", "t": 7,
+      "change": { "summary": "WALT adopte l'intention : produire de la méthamphétamine avec JESSE" },
+      "causes": [ { "type": "psy", "from": "d3" }, { "type": "psy", "from": "d5" },
+                  { "type": "psy", "from": "d6" }, { "type": "psy", "from": "d2" } ],
+      "requires": ["d3"],
+      "charges": [ { "agent": "WALT", "axis": "legalite", "polarity": "-", "magnitude": 3, "mode": "realized" },
+                   { "agent": "WALT", "axis": "fierte-humiliation", "polarity": "+", "magnitude": 2, "mode": "anticipated" } ],
+      "scope": { "observed": ["WALT", "AUD"], "hidden": ["FAMILLE", "HANK", "SKYLER"] },
+      "irreversible": false,
+      "violates_norms": ["n1"]
+    },
+    {
+      "id": "d8", "t": 8,
+      "change": { "summary": "WALT recrute JESSE sous menace de dénonciation" },
+      "causes": [ { "type": "psy", "from": "d7" }, { "type": "soc", "from": "d6" } ],
+      "requires": ["d6", "d7"],
+      "charges": [ { "agent": "JESSE", "axis": "liberte", "polarity": "-", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "JESSE", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d9", "t": 9,
+      "change": { "summary": "WALT vole du matériel de laboratoire au lycée" },
+      "causes": [ { "type": "psy", "from": "d7" } ],
+      "charges": [ { "agent": "WALT", "axis": "legalite", "polarity": "-", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "AUD"] },
+      "irreversible": false,
+      "violates_norms": ["n1"]
+    },
+    {
+      "id": "d10", "t": 10,
+      "change": { "summary": "première cuisson dans le désert — pureté exceptionnelle" },
+      "causes": [ { "type": "psy", "from": "d7" }, { "type": "phy", "from": "d9" } ],
+      "requires": ["d8"],
+      "charges": [ { "agent": "WALT", "axis": "fierte-humiliation", "polarity": "+", "magnitude": 3, "mode": "realized" },
+                   { "agent": "WALT", "axis": "legalite", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "JESSE", "AUD"] },
+      "irreversible": true,
+      "violates_norms": ["n1"]
+    },
+    {
+      "id": "d11", "t": 11,
+      "change": { "summary": "Krazy-8 et Emilio menacent de mort WALT et JESSE" },
+      "causes": [ { "type": "soc", "from": "d10" }, { "type": "soc", "disposition": "JESSE.réseau-criminel" } ],
+      "charges": [ { "agent": "WALT", "axis": "vie-mort", "polarity": "-", "magnitude": 3, "mode": "anticipated" },
+                   { "agent": "JESSE", "axis": "vie-mort", "polarity": "-", "magnitude": 3, "mode": "anticipated" } ],
+      "scope": { "observed": ["WALT", "JESSE", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d12", "t": 12,
+      "change": { "summary": "WALT improvise le gaz phosphine et neutralise les deux dealers", "attempt": true },
+      "causes": [ { "type": "psy", "from": "d11" }, { "type": "psy", "disposition": "WALT.savoir-de-chimiste" } ],
+      "charges": [ { "agent": "WALT", "axis": "vie-mort", "polarity": "+", "magnitude": 2, "mode": "realized" },
+                   { "agent": "WALT", "axis": "legalite", "polarity": "-", "magnitude": 3, "mode": "realized" },
+                   { "agent": "WALT", "axis": "fierte-humiliation", "polarity": "+", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "JESSE", "AUD"] },
+      "irreversible": true
+    },
+    {
+      "id": "d13", "t": 13,
+      "change": { "summary": "fuite en camping-car ; enregistrement caméscope (aveux/adieux)" },
+      "causes": [ { "type": "phy", "from": "d12" } ],
+      "charges": [ { "agent": "WALT", "axis": "verite-mensonge", "polarity": "+", "magnitude": 1, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "JESSE", "AUD"] },
+      "irreversible": false
+    },
+    {
+      "id": "d14", "t": 14,
+      "change": { "summary": "retour au foyer : WALT ment par omission sur sa journée" },
+      "causes": [ { "type": "psy", "from": "d13" }, { "type": "psy", "from": "d4" } ],
+      "charges": [ { "agent": "WALT", "axis": "verite-mensonge", "polarity": "-", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "AUD"], "hidden": ["SKYLER"] },
+      "irreversible": false
+    },
+    {
+      "id": "d15", "t": 15,
+      "change": { "summary": "WALT transformé, initiative inhabituelle — SKYLER : « Walt, c'est bien toi ? »" },
+      "causes": [ { "type": "psy", "from": "d10" }, { "type": "psy", "from": "d12" } ],
+      "charges": [ { "agent": "WALT", "axis": "fierte-humiliation", "polarity": "+", "magnitude": 2, "mode": "realized" } ],
+      "scope": { "observed": ["WALT", "SKYLER", "AUD"], "inferable": ["SKYLER"] },
+      "irreversible": false
+    }
+  ],
+  "commitments": [
+    { "id": "c1", "debtor": "WALT", "creditor": "FAMILLE",
+      "content": "serment intérieur : mettre la famille à l'abri du besoin avant de mourir",
+      "force": "implicit", "deadline": "avant la mort annoncée (~2 ans)", "status": "open", "opened_by": "d3" },
+    { "id": "c2", "debtor": "JESSE", "creditor": "WALT",
+      "content": "partenariat de production sous menace de dénonciation",
+      "force": "threat", "status": "open", "opened_by": "d8" },
+    { "id": "c3", "creditor": "AUD",
+      "content": "contrat de genre : la transgression se paiera",
+      "force": "genre", "status": "open", "opened_by": "d7" }
+  ],
+  "secrets": [
+    { "id": "s1", "holder": "WALT", "content": "le diagnostic de cancer",
+      "hidden_from": ["SKYLER", "FAMILLE", "HANK"], "opened_by": "d3" },
+    { "id": "s2", "holder": "WALT", "content": "la double vie criminelle",
+      "hidden_from": ["SKYLER", "FAMILLE", "HANK"], "opened_by": "d7" }
+  ],
+  "revelations": [],
+  "arcs": [
+    { "agent": "WALT", "label": "humiliation -> puissance (le want 'famille' justifie le need 'orgueil')",
+      "deltas": ["d3", "d10", "d12"], "thresholds": ["d10", "d12"] }
+  ]
+}

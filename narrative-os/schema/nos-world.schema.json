@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://narrative-os.dev/schema/nos-world-0.1.0.schema.json",
+  "title": "Narrative OS — World (fabula) v0.1.0",
+  "description": "Schéma normatif de l'ontologie v0.1 (Phase 2). Un document = un monde raconté (fabula) : agents, axes de valeur, normes, deltas narratifs, engagements, secrets, révélations, arcs, mécaniques. La couche discours est hors de ce schéma (I1). Les règles sémantiques non exprimables en JSON Schema (R1-R4, intégrité causale, cycle de vie) sont définies dans docs/phase-2/01-semantique-operationnelle.md et vérifiées par tools/validate.py.",
+  "type": "object",
+  "required": ["schema", "title", "valueAxes", "agents", "deltas"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "nos-0.1" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "valueAxes": {
+      "description": "Axes axiologiques bipolaires utilisés par ce monde (registre commun + extensions de domaine, cf. Q2).",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/id" },
+      "uniqueItems": true
+    },
+    "norms": { "type": "array", "items": { "$ref": "#/$defs/norm" } },
+    "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+    "agents": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/agent" } },
+    "bindings": {
+      "description": "A4 — liaisons joueur : un contrôleur humain lié à un agent (PJ) et à un modèle d'audience.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/playerBinding" }
+    },
+    "mechanics": { "type": "array", "items": { "$ref": "#/$defs/mechanic" } },
+    "deltas": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/delta" } },
+    "commitments": { "type": "array", "items": { "$ref": "#/$defs/commitment" } },
+    "secrets": { "type": "array", "items": { "$ref": "#/$defs/secret" } },
+    "revelations": { "type": "array", "items": { "$ref": "#/$defs/revelation" } },
+    "arcs": { "type": "array", "items": { "$ref": "#/$defs/arc" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:>-]*$" },
+
+    "entity": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "type": "string" },
+        "props": { "type": "object" }
+      }
+    },
+
+    "agent": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["agent", "audience", "collective"] },
+        "beliefs": { "type": "array", "items": { "type": "string" } },
+        "desires": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "want": { "type": "string" }, "need": { "type": "string" } }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["axis"],
+            "additionalProperties": false,
+            "properties": {
+              "axis": { "$ref": "#/$defs/id" },
+              "weight": {
+                "description": "Poids -3..3, ou null = inconnu/à apprendre par observation (C3, agents contrôlés par un humain).",
+                "type": ["integer", "null"], "minimum": -3, "maximum": 3
+              }
+            }
+          }
+        },
+        "flaw": { "type": "string" },
+        "identity": { "type": "array", "items": { "type": "string" } },
+        "members": {
+          "description": "kind=collective uniquement (A3) : membres, sans délibération collective propre en v0.1.",
+          "type": "array", "items": { "$ref": "#/$defs/id" }
+        },
+        "genreContract": {
+          "description": "kind=audience uniquement : promesses de genre actives.",
+          "type": "array", "items": { "type": "string" }
+        },
+        "props": { "type": "object" }
+      }
+    },
+
+    "playerBinding": {
+      "type": "object",
+      "required": ["player", "agent", "audience"],
+      "additionalProperties": false,
+      "properties": {
+        "player": { "$ref": "#/$defs/id" },
+        "agent": { "$ref": "#/$defs/id" },
+        "audience": { "$ref": "#/$defs/id" }
+      }
+    },
+
+    "norm": {
+      "description": "A1 — norme sociale opposable, distincte des valeurs personnelles.",
+      "type": "object",
+      "required": ["id", "content"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "content": { "type": "string" },
+        "emitter": { "$ref": "#/$defs/id" },
+        "sanction": { "type": "string" }
+      }
+    },
+
+    "mechanic": {
+      "description": "Storylet généralisée : préconditions et effets en motifs sur le graphe (semi-structurés en v0.1).",
+      "type": "object",
+      "required": ["id", "family", "preconditions"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "family": {
+          "enum": ["epistemique", "contractuelle", "conflictuelle", "relationnelle",
+                   "transformationnelle", "disruption", "discours"]
+        },
+        "preconditions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "proposes": { "type": "string" }
+      }
+    },
+
+    "cause": {
+      "description": "Arête causale typée. Exactement une origine parmi : from (delta déclencheur), disposition (trait durable — jamais suffisante seule, R1), commitment (engagement pesant sur la situation), exogenous (hors du monde raconté).",
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["phy", "psy", "soc", "them"] },
+        "from": { "$ref": "#/$defs/id" },
+        "disposition": { "type": "string" },
+        "commitment": { "$ref": "#/$defs/id" },
+        "exogenous": { "const": true }
+      },
+      "oneOf": [
+        { "required": ["from"] },
+        { "required": ["disposition"] },
+        { "required": ["commitment"] },
+        { "required": ["exogenous"] }
+      ]
+    },
+
+    "charge": {
+      "type": "object",
+      "required": ["agent", "axis", "polarity", "magnitude"],
+      "additionalProperties": false,
+      "properties": {
+        "agent": { "$ref": "#/$defs/id" },
+        "axis": { "$ref": "#/$defs/id" },
+        "polarity": { "enum": ["+", "-"] },
+        "magnitude": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "mode": {
+          "description": "A2 — realized : effet advenu ; anticipated : effet projeté (fonde espoir/peur, OCC).",
+          "enum": ["realized", "anticipated"], "default": "realized"
+        }
+      }
+    },
+
+    "scope": {
+      "description": "Portée épistémique (I6). observed/hidden disjoints ; inferable : accessible par inférence sans observation. L'audience et le(s) joueur(s) sont des ids d'agents ordinaires ici.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "observed": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "hidden": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "inferable": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true }
+      }
+    },
+
+    "delta": {
+      "description": "Primitive centrale (D1) : changement d'état causé, chargé, à portée épistémique, réversible ou non.",
+      "type": "object",
+      "required": ["id", "t", "change", "causes", "charges", "scope", "irreversible"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "t": { "description": "Ordre logique de fabula (Q4) — pas une date.", "type": "integer", "minimum": 0 },
+        "change": {
+          "type": "object",
+          "required": ["summary"],
+          "additionalProperties": false,
+          "properties": {
+            "summary": { "type": "string", "minLength": 3 },
+            "attempt": {
+              "description": "Triade de Bremond : ce delta est une tentative ; issue portée par un delta aval.",
+              "type": "boolean"
+            },
+            "assertions_add": { "type": "array", "items": { "$ref": "#/$defs/assertion" } },
+            "assertions_remove": { "type": "array", "items": { "$ref": "#/$defs/assertion" } }
+          }
+        },
+        "causes": { "type": "array", "items": { "$ref": "#/$defs/cause" } },
+        "requires": {
+          "description": "Préconditions dures : deltas dont l'ablation invalide celui-ci même si d'autres causes subsistent (E2, cas d6 Cité d'Ambre).",
+          "type": "array", "items": { "$ref": "#/$defs/id" }
+        },
+        "charges": { "type": "array", "items": { "$ref": "#/$defs/charge" } },
+        "scope": { "$ref": "#/$defs/scope" },
+        "irreversible": { "type": "boolean" },
+        "via": { "description": "Mécanique dont ce delta est une instance.", "$ref": "#/$defs/id" },
+        "choice": {
+          "description": "Delta décidé par un contrôleur humain (agency).",
+          "type": "object",
+          "required": ["by", "options", "chosen"],
+          "additionalProperties": false,
+          "properties": {
+            "by": { "$ref": "#/$defs/id" },
+            "options": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+            "chosen": { "type": "string" }
+          }
+        },
+        "violates_norms": { "type": "array", "items": { "$ref": "#/$defs/id" } }
+      }
+    },
+
+    "assertion": {
+      "description": "Triplet semi-structuré. Le vocabulaire de prédicats par domaine est défini en Phase 3 (World State Store) ; v0.1 n'impose que la forme.",
+      "type": "object",
+      "required": ["subject", "predicate"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": { "$ref": "#/$defs/id" },
+        "predicate": { "type": "string" },
+        "object": { "type": ["string", "number", "boolean"] }
+      }
+    },
+
+    "commitment": {
+      "description": "I7/A5 — promesse, dette, serment, menace, contrat de genre, dette morale.",
+      "type": "object",
+      "required": ["id", "creditor", "content", "force", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "debtor": { "description": "Absent uniquement pour force=genre (débiteur = l'instance narrative).", "$ref": "#/$defs/id" },
+        "creditor": {
+          "oneOf": [
+            { "$ref": "#/$defs/id" },
+            { "type": "array", "items": { "$ref": "#/$defs/id" }, "minItems": 1 }
+          ]
+        },
+        "content": { "type": "string" },
+        "force": { "enum": ["contract", "oath", "threat", "implicit", "moral", "genre"] },
+        "deadline": {
+          "description": "Seul objet temporel daté obligatoire du système (Q4) — t logique ou libellé.",
+          "type": ["integer", "string"]
+        },
+        "status": { "enum": ["open", "honored", "betrayed", "cancelled"] },
+        "opened_by": { "description": "Delta d'ouverture ; absent = antérieur au récit.", "$ref": "#/$defs/id" },
+        "resolved_by": { "$ref": "#/$defs/id" }
+      }
+    },
+
+    "secret": {
+      "type": "object",
+      "required": ["id", "holder", "content", "hidden_from"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "holder": { "$ref": "#/$defs/id" },
+        "content": { "type": "string" },
+        "hidden_from": { "type": "array", "items": { "$ref": "#/$defs/id" }, "minItems": 1 },
+        "opened_by": { "$ref": "#/$defs/id" },
+        "revealed_by": { "$ref": "#/$defs/id" }
+      }
+    },
+
+    "revelation": {
+      "type": "object",
+      "required": ["id", "delta", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "delta": { "$ref": "#/$defs/id" },
+        "reveals_secret": { "$ref": "#/$defs/id" },
+        "reveals_delta": { "$ref": "#/$defs/id" },
+        "to": { "type": "array", "items": { "$ref": "#/$defs/id" }, "minItems": 1 },
+        "twist": {
+          "description": "true si la révélation force la ré-évaluation causale d'un passé déjà montré (anagnorisis).",
+          "type": "boolean"
+        }
+      }
+    },
+
+    "arc": {
+      "description": "I9 — chaîne de deltas irréversibles portant sur identité/croyances/valeurs d'un agent.",
+      "type": "object",
+      "required": ["agent", "deltas"],
+      "additionalProperties": false,
+      "properties": {
+        "agent": { "$ref": "#/$defs/id" },
+        "label": { "type": "string" },
+        "deltas": { "type": "array", "items": { "$ref": "#/$defs/id" }, "minItems": 1 },
+        "thresholds": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+        "self_revelation": { "$ref": "#/$defs/id" }
+      }
+    }
+  }
+}
