@@ -1,13 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://narrative-os.dev/schema/nos-world-0.1.0.schema.json",
-  "title": "Narrative OS — World (fabula) v0.1.0",
-  "description": "Schéma normatif de l'ontologie v0.1 (Phase 2). Un document = un monde raconté (fabula) : agents, axes de valeur, normes, deltas narratifs, engagements, secrets, révélations, arcs, mécaniques. La couche discours est hors de ce schéma (I1). Les règles sémantiques non exprimables en JSON Schema (R1-R4, intégrité causale, cycle de vie) sont définies dans docs/phase-2/01-semantique-operationnelle.md et vérifiées par tools/validate.py.",
+  "$id": "https://narrative-os.dev/schema/nos-world-0.2.0.schema.json",
+  "title": "Narrative OS — World (fabula) v0.2.0",
+  "description": "Schéma normatif de l'ontologie (Phases 2-3). Un document = un monde raconté (fabula) : agents, axes de valeur, normes, deltas narratifs, engagements, secrets, révélations, arcs, mécaniques. La couche discours est hors de ce schéma (I1). nos-0.2 (Phase 3) ajoute : `vocabulary` (extensions du noyau de prédicats Q8) et `actor` sur les deltas (vérification épistémique R-EPIS-1). Les règles sémantiques non exprimables en JSON Schema (R1-R4, intégrité causale, cycle de vie, catalogue de refus R-*) sont définies dans docs/phase-2/01-semantique-operationnelle.md et docs/phase-3/01-noyau-symbolique.md, et exécutées par kernel/.",
   "type": "object",
   "required": ["schema", "title", "valueAxes", "agents", "deltas"],
   "additionalProperties": false,
   "properties": {
-    "schema": { "const": "nos-0.1" },
+    "schema": { "const": "nos-0.2" },
+    "vocabulary": {
+      "description": "Extensions de domaine du noyau de prédicats (Q8). Interdit de redéfinir le noyau (situé-à, possède, est, croit, sait, veut, intention, cache, membre-de).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "$ref": "#/$defs/id" },
+          "functional": { "type": "boolean" },
+          "exclusiveObject": { "type": "boolean" }
+        }
+      }
+    },
     "title": { "type": "string" },
     "description": { "type": "string" },
     "valueAxes": {
@@ -183,6 +197,10 @@
       "properties": {
         "id": { "$ref": "#/$defs/id" },
         "t": { "description": "Ordre logique de fabula (Q4) — pas une date.", "type": "integer", "minimum": 0 },
+        "actor": {
+          "description": "Agent qui accomplit/porte le delta (optionnel : certains deltas n'ont pas d'acteur modélisé). Requis pour la vérification épistémique R-EPIS-1 : un acteur ne peut réagir (cause psy) qu'à un delta de son champ épistémique.",
+          "$ref": "#/$defs/id"
+        },
         "change": {
           "type": "object",
           "required": ["summary"],

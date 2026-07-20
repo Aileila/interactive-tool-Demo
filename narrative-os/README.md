@@ -54,8 +54,8 @@ ouvertes listées, expériences proposées).
 | **1** | État de l'art (narratologie, moteurs, recherche IA), invariants, ontologie v0, architecture v0 | ✅ livrée (ce dépôt) |
 | **1b** | Expériences de validation E1/E2/E4/E5 ([`experiments/`](experiments/)) → amendements v0.1 (A1-A5), règles R1-R4, Q2/Q4 tranchées | ✅ gate ouverte |
 | **2** | Formalisation : [schéma `nos-0.1`](schema/nos-world.schema.json), [sémantique opérationnelle](docs/phase-2/01-semantique-operationnelle.md), [corpus de référence](testdata/) + [validateur et suite de conformité](tools/) (26 tests verts) | ✅ livrée — [synthèse](docs/phase-2/02-synthese-phase-2.md) |
-| 3 | Noyau exécutable : World State + Causality + Coherence (mode symbolique pur, sans LLM) | prête à ouvrir (prérequis : trancher Q8) |
-| 4 | Moteurs dynamiques : personnages (BDI+émotions), tension, progression (drama manager) | — |
+| **3** | Noyau exécutable [`kernel/`](kernel/) : Q8 tranchée (format `nos-0.2`), World State Store (event sourcing + time-travel), Causality Engine, Coherence Engine (12 refus motivés) — 49 tests verts | ✅ livrée — [synthèse](docs/phase-3/02-synthese-phase-3.md) |
+| 4 | Moteurs dynamiques : mécaniques compilées (Q10), personnages (BDI+émotions OCC dérivées), tension v0 (dette narrative, ironie) | prête à ouvrir |
 | 5 | Mémoire longue, transformation (arcs), couche épistémique complète | — |
 | 6 | Couche de réalisation (adaptateurs LLM interchangeables + rendu structuré sans LLM) | — |
 | 7 | Évaluation : métriques de cohérence/tension/tellability, études comparatives | — |

@@ -1,5 +1,5 @@
 {
-  "schema": "nos-0.1",
+  "schema": "nos-0.2",
   "title": "La Cité d'Ambre — session de jeu narratif synthétique",
   "description": "Conversion exécutable de l'annotation E1.3 (trace interactive, mode storylets).",
   "valueAxes": ["loyaute", "fortune", "legalite", "liberte", "vie-mort"],
@@ -42,7 +42,9 @@
   "deltas": [
     {
       "id": "d1", "t": 1,
-      "change": { "summary": "SILAS rappelle la dette et fixe l'échéance à la nouvelle lune" },
+      "change": { "summary": "SILAS rappelle la dette et fixe l'échéance à la nouvelle lune",
+                  "assertions_add": [ { "subject": "PJ", "predicate": "est", "object": "sous échéance" } ] },
+      "actor": "SILAS",
       "causes": [ { "type": "soc", "exogenous": true }, { "type": "soc", "commitment": "c1" } ],
       "charges": [ { "agent": "PJ", "axis": "fortune", "polarity": "-", "magnitude": 2, "mode": "anticipated" } ],
       "scope": { "observed": ["PJ", "SILAS", "JOUEUR"] },
@@ -51,7 +53,8 @@
     },
     {
       "id": "d2", "t": 2,
-      "change": { "summary": "rumeur : cargaison d'ambre mal gardée au quai 7" },
+      "change": { "summary": "rumeur : cargaison d'ambre mal gardée au quai 7",
+                  "assertions_add": [ { "subject": "PJ", "predicate": "sait", "object": "cargaison mal gardée au quai 7" } ] },
       "causes": [ { "type": "soc", "from": "d1" } ],
       "charges": [],
       "scope": { "observed": ["PJ", "JOUEUR"] },
@@ -60,7 +63,9 @@
     },
     {
       "id": "d3", "t": 3,
-      "change": { "summary": "MIRA propose de faire le guet, par amitié" },
+      "change": { "summary": "MIRA propose de faire le guet, par amitié",
+                  "assertions_add": [ { "subject": "MIRA", "predicate": "veut", "object": "aider PJ" } ] },
+      "actor": "MIRA",
       "causes": [ { "type": "soc", "from": "d2" }, { "type": "psy", "disposition": "relation:MIRA->PJ" } ],
       "charges": [ { "agent": "PJ", "axis": "loyaute", "polarity": "+", "magnitude": 1, "mode": "realized" } ],
       "scope": { "observed": ["PJ", "MIRA", "JOUEUR"] },
@@ -69,7 +74,9 @@
     },
     {
       "id": "d4", "t": 4,
-      "change": { "summary": "CHOIX 1 : PJ accepte l'aide de MIRA" },
+      "change": { "summary": "CHOIX 1 : PJ accepte l'aide de MIRA",
+                  "assertions_add": [ { "subject": "MIRA", "predicate": "est", "object": "complice du vol" } ] },
+      "actor": "PJ",
       "causes": [ { "type": "psy", "from": "d3" }, { "type": "psy", "from": "d1" } ],
       "charges": [ { "agent": "PJ", "axis": "loyaute", "polarity": "+", "magnitude": 1, "mode": "realized" },
                    { "agent": "MIRA", "axis": "vie-mort", "polarity": "-", "magnitude": 1, "mode": "anticipated" } ],
@@ -79,7 +86,10 @@
     },
     {
       "id": "d5", "t": 5,
-      "change": { "summary": "vol de la cargaison : réussite partielle — l'alarme est donnée", "attempt": true },
+      "change": { "summary": "vol de la cargaison : réussite partielle — l'alarme est donnée", "attempt": true,
+                  "assertions_add": [ { "subject": "PJ", "predicate": "possède", "object": "cargaison d'ambre" },
+                                      { "subject": "GARDE", "predicate": "est", "object": "alertée" } ] },
+      "actor": "PJ",
       "causes": [ { "type": "psy", "from": "d2" }, { "type": "phy", "from": "d4" },
                   { "type": "phy", "exogenous": true } ],
       "charges": [ { "agent": "PJ", "axis": "fortune", "polarity": "+", "magnitude": 2, "mode": "realized" },
@@ -90,7 +100,10 @@
     },
     {
       "id": "d6", "t": 6,
-      "change": { "summary": "MIRA est identifiée par la GARDE en couvrant la fuite de PJ" },
+      "change": { "summary": "MIRA est identifiée par la GARDE en couvrant la fuite de PJ",
+                  "assertions_add": [ { "subject": "MIRA", "predicate": "est", "object": "détenue" },
+                                      { "subject": "GARDE", "predicate": "sait", "object": "Mira est complice" } ] },
+      "actor": "MIRA",
       "causes": [ { "type": "phy", "from": "d5" }, { "type": "psy", "from": "d4" } ],
       "requires": ["d4"],
       "charges": [ { "agent": "MIRA", "axis": "liberte", "polarity": "-", "magnitude": 3, "mode": "realized" },
@@ -101,7 +114,11 @@
     },
     {
       "id": "d7", "t": 7,
-      "change": { "summary": "PJ solde la dette : 300 ambres remis à SILAS" },
+      "change": { "summary": "PJ solde la dette : 300 ambres remis à SILAS",
+                  "assertions_remove": [ { "subject": "PJ", "predicate": "possède", "object": "cargaison d'ambre" },
+                                         { "subject": "PJ", "predicate": "est", "object": "sous échéance" } ],
+                  "assertions_add": [ { "subject": "SILAS", "predicate": "possède", "object": "300 ambres" } ] },
+      "actor": "PJ",
       "causes": [ { "type": "phy", "from": "d5" }, { "type": "soc", "commitment": "c1" } ],
       "charges": [ { "agent": "PJ", "axis": "fortune", "polarity": "-", "magnitude": 2, "mode": "realized" },
                    { "agent": "PJ", "axis": "liberte", "polarity": "+", "magnitude": 2, "mode": "realized" } ],
@@ -110,7 +127,9 @@
     },
     {
       "id": "d8", "t": 8,
-      "change": { "summary": "PJ apprend l'arrestation de MIRA" },
+      "change": { "summary": "PJ apprend l'arrestation de MIRA",
+                  "assertions_add": [ { "subject": "PJ", "predicate": "sait", "object": "Mira est détenue" } ] },
+      "actor": "PJ",
       "causes": [ { "type": "soc", "from": "d6" } ],
       "charges": [ { "agent": "PJ", "axis": "loyaute", "polarity": "-", "magnitude": 3, "mode": "realized" } ],
       "scope": { "observed": ["PJ", "JOUEUR"] },
@@ -119,6 +138,7 @@
     {
       "id": "d9", "t": 9,
       "change": { "summary": "CHOIX 2 : dilemme délégué — vendre un témoin / se livrer à sa place / abandonner MIRA" },
+      "actor": "PJ",
       "causes": [ { "type": "psy", "from": "d8" } ],
       "charges": [],
       "scope": { "observed": ["PJ", "JOUEUR"] },
@@ -130,7 +150,11 @@
     },
     {
       "id": "d10", "t": 10,
-      "change": { "summary": "PJ se livre ; MIRA libérée ; SILAS empoche la cargaison restante" },
+      "change": { "summary": "PJ se livre ; MIRA libérée ; SILAS empoche la cargaison restante",
+                  "assertions_remove": [ { "subject": "MIRA", "predicate": "est", "object": "détenue" } ],
+                  "assertions_add": [ { "subject": "PJ", "predicate": "est", "object": "détenu" },
+                                      { "subject": "MIRA", "predicate": "est", "object": "libre" } ] },
+      "actor": "PJ",
       "causes": [ { "type": "psy", "from": "d9" } ],
       "charges": [ { "agent": "PJ", "axis": "liberte", "polarity": "-", "magnitude": 3, "mode": "realized" },
                    { "agent": "PJ", "axis": "loyaute", "polarity": "+", "magnitude": 3, "mode": "realized" },
