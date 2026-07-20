@@ -52,7 +52,8 @@ ouvertes listées, expériences proposées).
 | Phase | Objet | Statut |
 |---|---|---|
 | **1** | État de l'art (narratologie, moteurs, recherche IA), invariants, ontologie v0, architecture v0 | ✅ livrée (ce dépôt) |
-| 2 | Formalisation : schémas de données (JSON Schema), sémantique opérationnelle des primitives, jeu de récits de référence annotés | à ouvrir |
+| **1b** | Expériences de validation E1/E2/E4/E5 ([`experiments/`](experiments/)) → amendements v0.1 (A1-A5), règles R1-R4, Q2/Q4 tranchées | ✅ gate ouverte |
+| 2 | Formalisation : schémas de données (JSON Schema) de l'ontologie v0.1, sémantique opérationnelle des primitives, les 34 deltas d'E1 comme jeu de test de référence | **prête à ouvrir** (E3 court en parallèle) |
 | 3 | Noyau exécutable : World State + Causality + Coherence (mode symbolique pur, sans LLM) | — |
 | 4 | Moteurs dynamiques : personnages (BDI+émotions), tension, progression (drama manager) | — |
 | 5 | Mémoire longue, transformation (arcs), couche épistémique complète | — |
