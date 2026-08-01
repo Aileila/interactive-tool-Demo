@@ -1,0 +1,41 @@
+{
+  "sref": "A_CREER",
+  "ratio": "16:9",
+  "stylize": 200,
+  "palette": [
+    "bleu nuit d'open space",
+    "cuivre chaud",
+    "gris beton",
+    "blanc froid d'ecran",
+    "bordeaux profond"
+  ],
+  "lumiere": "lumieres froides d'ecran contre lampes chaudes d'atelier, neons de ville en fond, contrastes marques",
+  "focales": ["24mm", "35mm", "50mm", "85mm"],
+  "animation": {
+    "modele": "seedance-1.0",
+    "resolution": "1080p",
+    "paliers_generation_s": [5, 10],
+    "style": "mouvement naturaliste et retenu, camera discrete, jeu d'acteur minimal",
+    "style_en": "naturalistic restrained motion, cinematic, subtle camera work, minimal acting",
+    "contraintes": [
+      "aucun morphing : visages et decors gardent leur forme",
+      "les personnages restent fideles a la premiere frame (age, coiffure, costume)",
+      "aucun element nouveau n'entre dans le cadre",
+      "premiere frame = image Midjourney validee, fidelite maximale"
+    ]
+  },
+  "personnages": [
+    {
+      "id": "claire",
+      "fiche": "femme de 54 ans, carre court argente, blazer sombre bien coupe sur chemise claire, regard determine, port droit",
+      "oref_url": "A_CREER",
+      "ow": 450
+    },
+    {
+      "id": "awa",
+      "fiche": "femme de 58 ans, tresses grises relevees, lunettes rondes fines, chemise a motifs colores, sourire en coin, vieux portable couvert de stickers",
+      "oref_url": "A_CREER",
+      "ow": 450
+    }
+  ]
+}
